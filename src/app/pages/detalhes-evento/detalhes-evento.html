@@ -1,0 +1,269 @@
+
+<main class="detalhes-evento">
+
+ 
+<header class="cabecalho">
+  <div class="logo-site">
+    <span class="logo-icone">⌘</span>
+    <span>Meetup Tech <strong>SP</strong></span>
+  </div>
+
+  <nav class="menu-site" aria-label="Menu principal">
+    <a href="#sobre">Sobre o evento</a>
+    <a href="#participantes">Ir em grupo</a>
+  </nav>
+</header>
+
+
+  <section class="conteudo-evento">
+
+    <!-- Banner principal -->
+    <section class="banner-evento">
+      <div class="categorias">
+        <span>Presencial</span>
+        <span>Vagas limitadas</span>
+        <span>Gratuito</span>
+      </div>
+
+      <h2>React Summit SP: Server Components na prática</h2>
+
+      <div class="resumo-evento">
+        <span>04 de dezembro de 2026</span>
+        <span>19h00 – 22h00</span>
+        <span>São Paulo</span>
+      </div>
+    </section>
+
+    <!-- divisão em duas colunas -->
+    <div class="grade-evento">
+
+      <!-- Coluna esquerda -->
+      <div class="coluna-principal">
+
+        <article class="informacoes-evento" id="sobre">
+          <h3>Sobre o evento</h3>
+          <p>
+            Uma noite para entender, na prática, como os React
+            Server Components mudam a forma de construir aplicações.
+          </p>
+        </article>
+
+
+<section class="ficha-evento">
+  <h3>Ficha do evento</h3>
+
+  <div class="ficha-grade">
+
+    <div class="ficha-item">
+      <span class="ficha-icone">▦</span>
+      <div>
+        <small>DATA E HORÁRIO</small>
+        <p>Sex, 04 dez 2026 · 19h00 – 22h00</p>
+      </div>
+    </div>
+
+    <div class="ficha-item">
+      <span class="ficha-icone">⌖</span>
+      <div>
+        <small>LOCAL</small>
+        <p>Google for Startups — Av. Paulista, 1000</p>
+      </div>
+    </div>
+
+    <div class="ficha-item">
+      <span class="ficha-icone">▣</span>
+      <div>
+        <small>ESTAÇÃO POR PERTO</small>
+        <p>Brigadeiro (Linha 2 – Verde)</p>
+      </div>
+    </div>
+
+    <div class="ficha-item">
+      <span class="ficha-icone">⌘</span>
+      <div>
+        <small>ÁREA TECH</small>
+        <p>Dev · Front-end</p>
+      </div>
+    </div>
+
+    <div class="ficha-item">
+      <span class="ficha-icone">▤</span>
+      <div>
+        <small>EMPRESA ORGANIZADORA</small>
+        <p>Network</p>
+      </div>
+    </div>
+
+    <div class="ficha-item">
+      <span class="ficha-icone">♧</span>
+      <div>
+        <small>FORMATO</small>
+        <p>Presencial</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+       
+<section class="participacao" id="participantes">
+
+  <div class="participacao-cabecalho">
+    <div>
+      <h3>Ir em grupo</h3>
+      <p>Pessoas que irão ao evento</p>
+    </div>
+
+    <button type="button" (click)="abrirFormulario()">
+  Adicione meu nome
+</button>
+  </div>
+
+  <div class="lista-participantes">
+    @for (nome of participantes(); track $index) {
+      <div class="participante">
+        {{ nome }}
+      </div>
+    }
+  </div>
+
+</section>
+
+
+      </div>
+
+      <!-- Coluna da direita -->
+      <aside class="coluna-lateral">
+
+        
+<section class="inscricao-evento">
+  <h3>Inscrição</h3>
+
+  <div class="inscricao-informacoes">
+    <p class="inscricao-data">04 de dezembro de 2026</p>
+    <p class="inscricao-horario">19h00 às 22h00</p>
+    <span class="inscricao-gratuita">Evento gratuito</span>
+  </div>
+
+  
+<button
+  type="button"
+  class="botao-inscricao"
+  disabled
+>
+  Inscrições em breve
+</button>
+
+
+  <p class="inscricao-aviso">
+  As inscrições ainda não estão disponíveis.
+ 
+</p>
+</section>
+
+
+       
+<section class="localizacao-evento">
+  <h3>Como chegar</h3>
+
+  <p>Google for Startups — São Paulo</p>
+
+  <div class="mapa-evento">
+    <iframe
+      title="Mapa da localização do evento"
+      src="https://www.google.com/maps?q=Av.+Paulista,+1000,+São+Paulo&output=embed"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+
+  <a
+    class="link-mapa"
+    href="https://www.google.com/maps/search/?api=1&query=Av.+Paulista,+1000,+São+Paulo"
+    target="_blank"
+    rel="noopener noreferrer">
+    Abrir no Google Maps
+  </a>
+</section>
+
+
+      </aside>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="rodape-site">
+  <div class="rodape-conteudo">
+    <p class="rodape-logo">
+      Meetup Tech <span>SP</span>
+    </p>
+
+    <p class="rodape-descricao">
+      Conectando pessoas, tecnologia e eventos em São Paulo.
+    </p>
+
+    <p class="rodape-direitos">
+      © 2026 Meetup Tech SP. Todos os direitos reservados.
+    </p>
+  </div>
+</footer>
+
+
+@if (formularioAberto()) {
+  <div class="modal-fundo">
+    <section
+      class="modal-formulario"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="titulo-modal"
+    >
+      <h2 id="titulo-modal">Ir em grupo</h2>
+
+      <p class="modal-descricao">
+        Vai com a gente? Adicione seu nome à lista.
+        Não precisa criar uma conta.
+      </p>
+
+      <label for="nome-participante">Seu nome</label>
+
+      
+<input
+  id="nome-participante"
+  type="text"
+  placeholder="Como você quer aparecer?"
+  [value]="nomeDigitado()"
+  (input)="nomeDigitado.set($any($event.target).value)"
+/>
+
+
+      <p class="modal-aviso">
+        Ao adicionar, você autoriza a exibição apenas do seu
+        nome na lista de quem vai ao evento.
+      </p>
+
+      <div class="modal-acoes">
+        <button
+          type="button"
+          class="botao-cancelar"
+          (click)="fecharFormulario()"
+        >
+          Cancelar
+        </button>
+
+        
+<button
+  type="button"
+  class="botao-adicionar"
+  (click)="adicionarParticipante()"
+>
+  Adicionar meu nome
+</button>
+
+      </div>
+    </section>
+  </div>
+}

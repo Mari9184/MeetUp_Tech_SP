@@ -1,0 +1,529 @@
+
+.detalhes-evento {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+.cabecalho {
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--cor-borda);
+  margin-bottom: 32px;
+}
+
+.cabecalho h1 {
+  font-size: 24px;
+  color: var(--cor-destaque);
+  margin: 0;
+}
+
+.conteudo-evento {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.conteudo-evento h2 {
+  font-size: 28px;
+  margin: 0;
+}
+
+.informacoes-evento,
+.participacao {
+  background-color: var(--cor-cartao);
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.informacoes-evento h3,
+.participacao h3 {
+  margin-top: 0;
+}
+
+.participacao button {
+  background-color: var(--cor-destaque);
+  color: #101510;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .detalhes-evento {
+    padding: 20px 16px 48px;
+  }
+}
+
+.banner-evento {
+  padding: 40px;
+  border-radius: 20px;
+  background: linear-gradient(110deg, #1a2b12, #111a10);
+  border: 1px solid var(--cor-borda);
+}
+
+.categorias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.categorias span {
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #263b18;
+  color: var(--cor-destaque);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.banner-evento h2 {
+  max-width: 650px;
+  font-size: 36px;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.resumo-evento {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  color: var(--cor-texto-secundario);
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .banner-evento {
+    padding: 24px;
+  }
+
+  .banner-evento h2 {
+    font-size: 28px;
+  }
+}
+
+/* Organização em duas colunas */
+
+.grade-evento {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+/* Coluna principal e lateral */
+
+.coluna-principal,
+.coluna-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+/* Cartões de informações */
+
+.ficha-evento,
+.inscricao-evento,
+.localizacao-evento {
+  background-color: var(--cor-cartao);
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.ficha-evento h3,
+.inscricao-evento h3,
+.localizacao-evento h3 {
+  margin-top: 0;
+}
+
+/* Botão de inscrição */
+
+.inscricao-evento button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--cor-destaque);
+  color: #101510;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+
+
+@media (max-width: 768px) {
+  .grade-evento {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Grade de informações do evento */
+
+.ficha-grade {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.ficha-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background-color: var(--cor-campo);
+  border-radius: 8px;
+  min-width: 0;
+}
+
+.ficha-icone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  background-color: #263b18;
+  color: var(--cor-destaque);
+  border-radius: 8px;
+  font-size: 20px;
+}
+
+.ficha-item small {
+  display: block;
+  color: var(--cor-texto-secundario);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.ficha-item p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+  .ficha-grade {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Seção Ir em grupo */
+
+.participacao-cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.participacao-cabecalho h3 {
+  margin: 0 0 6px;
+}
+
+.participacao-cabecalho p {
+  margin: 0;
+  color: var(--cor-texto-secundario);
+  font-size: 13px;
+}
+
+.lista-participantes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.participante {
+  background-color: var(--cor-campo);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .participacao-cabecalho {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* Fundo escuro atrás do formulário */
+
+.modal-fundo {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+}
+
+/* Janela do formulário */
+
+.modal-formulario {
+  width: 100%;
+  max-width: 460px;
+  padding: 32px;
+  border-radius: 16px;
+  background: var(--cor-cartao);
+  border: 1px solid var(--cor-borda);
+}
+
+.modal-formulario h2 {
+  margin: 0 0 12px;
+  font-size: 24px;
+}
+
+.modal-descricao,
+.modal-aviso {
+  color: var(--cor-texto-secundario);
+  line-height: 1.5;
+}
+
+.modal-descricao {
+  margin-bottom: 24px;
+}
+
+.modal-formulario label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.modal-formulario input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  background: var(--cor-campo);
+  color: var(--cor-texto);
+  font-size: 15px;
+}
+
+.modal-formulario input:focus {
+  outline: 2px solid var(--cor-destaque);
+}
+
+.modal-aviso {
+  margin: 20px 0;
+  font-size: 13px;
+}
+
+.modal-acoes {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-acoes button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.botao-cancelar {
+  background: var(--cor-campo);
+  color: var(--cor-texto);
+}
+
+.botao-adicionar {
+  background: var(--cor-destaque);
+  color: #101510;
+}
+
+@media (max-width: 480px) {
+  .modal-formulario {
+    padding: 24px;
+  }
+}
+
+/* Cartão de inscrição */
+
+.inscricao-informacoes {
+  margin: 20px 0;
+}
+
+.inscricao-data {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.inscricao-horario {
+  font-size: 14px;
+  color: var(--cor-texto-secundario);
+  margin-bottom: 16px;
+}
+
+.inscricao-gratuita {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background-color: #263b18;
+  color: var(--cor-destaque);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.botao-inscricao {
+  display: block;
+  width: 100%;
+  padding: 14px 12px;
+  border-radius: 8px;
+  background-color: var(--cor-destaque);
+  color: #101510;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.botao-inscricao:hover {
+  background-color: #a9ff29;
+}
+
+.inscricao-aviso {
+  margin-top: 14px;
+  color: var(--cor-texto-secundario);
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Mapa do evento */
+
+.mapa-evento {
+  width: 100%;
+  height: 220px;
+  margin-top: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--cor-borda);
+}
+
+.mapa-evento iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.link-mapa {
+  display: inline-block;
+  margin-top: 14px;
+  color: var(--cor-destaque);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.link-mapa:hover {
+  text-decoration: underline;
+}
+
+/* Cabeçalho */
+
+.cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo-site {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--cor-texto);
+}
+
+.logo-site strong {
+  color: var(--cor-destaque);
+}
+
+.logo-icone {
+  color: var(--cor-destaque);
+  font-size: 28px;
+}
+
+.menu-site {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.menu-site a {
+  color: var(--cor-texto-secundario);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.menu-site a:hover {
+  color: var(--cor-destaque);
+}
+
+@media (max-width: 600px) {
+  .cabecalho {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .menu-site {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+}
+
+/* Rodapé */
+
+.rodape-site {
+  width: 100%;
+  padding: 32px 24px;
+  border-top: 1px solid var(--cor-borda);
+  background-color: var(--cor-cartao);
+}
+
+.rodape-conteudo {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.rodape-logo {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.rodape-logo span {
+  color: var(--cor-destaque);
+}
+
+.rodape-descricao {
+  font-size: 14px;
+  color: var(--cor-texto-secundario);
+  margin-bottom: 20px;
+}
+
+.rodape-direitos {
+  font-size: 12px;
+  color: var(--cor-texto-secundario);
+}
+.botao-inscricao:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
