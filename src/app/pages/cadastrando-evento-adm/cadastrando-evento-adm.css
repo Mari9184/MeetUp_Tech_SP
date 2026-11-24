@@ -1,0 +1,698 @@
+/* =====================================================
+   CADASTRO DE EVENTO — PAINEL ADMINISTRATIVO
+   Classes organizadas e nomeadas em português.
+   ===================================================== */
+
+:host {
+  display: block;
+  min-width: 320px;
+  min-height: 100vh;
+  --cor-painel: var(--cor-superficie);
+  --cor-secundaria: var(--cor-texto-secundario);
+  --cor-suave: var(--cor-texto-suave);
+  --cor-verde-escuro: var(--cor-verde-fundo);
+  --cor-laranja: var(--cor-alerta);
+  --cor-vermelho: var(--cor-erro);
+  --fonte-mono: var(--fonte-monospace);
+}
+
+.conteudo-administrativo {
+  padding: 32px var(--espacamento-pagina) 44px;
+}
+
+.pagina-cadastro {
+  width: min(100%, var(--largura-conteudo));
+  margin: 0 auto;
+}
+
+/* 1. Cabeçalho e navegação */
+.caminho-navegacao {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 8px;
+  color: var(--cor-secundaria);
+  font-size: 12px;
+}
+
+.caminho-navegacao a {
+  color: var(--cor-verde);
+  text-decoration: none;
+}
+
+.cabecalho-conteudo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.cabecalho-conteudo h1 {
+  margin: 0;
+  font-size: clamp(30px, 3vw, 34px);
+  font-weight: 800;
+  letter-spacing: -1.2px;
+}
+
+.cabecalho-conteudo p {
+  margin: 7px 0 0;
+  color: var(--cor-secundaria);
+  font-size: 13px;
+}
+
+.acoes-cabecalho {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 12px;
+}
+
+/* 2. Botões */
+.botao {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 17px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 600;
+  transition:
+    filter 0.2s ease,
+    background 0.2s ease;
+}
+
+.botao:hover {
+  filter: brightness(1.08);
+}
+
+.botao-secundario {
+  background: #202820;
+  color: var(--cor-texto);
+}
+
+.botao-principal {
+  background: var(--cor-verde);
+  color: #071000;
+}
+
+/* 3. Grade principal */
+.estrutura-cadastro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 307px;
+  align-items: start;
+  gap: 22px;
+}
+
+.formulario-evento {
+  display: grid;
+  gap: 15px;
+  min-width: 0;
+}
+
+.cartao-formulario {
+  min-width: 0;
+  padding: 23px 22px 21px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 13px;
+  background: var(--cor-painel);
+}
+
+/* 4. Títulos e campos */
+.titulo-secao {
+  margin-bottom: 17px;
+}
+
+.titulo-secao h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.titulo-secao p {
+  margin: 6px 0 0;
+  color: var(--cor-secundaria);
+  font-size: 11px;
+}
+
+.grupo-campo {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin: 0 0 16px;
+  padding: 0;
+  border: 0;
+}
+
+.grupo-campo:last-child {
+  margin-bottom: 0;
+}
+
+.grupo-campo > label,
+.grupo-campo legend {
+  margin-bottom: 7px;
+  color: var(--cor-texto);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.grupo-campo legend {
+  padding: 0;
+}
+
+.campo-entrada,
+.grupo-campo > input,
+.grupo-campo select,
+.grupo-campo textarea,
+.campo-com-icone {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--cor-borda);
+  border-radius: 9px;
+  background: var(--cor-campo);
+  color: var(--cor-texto);
+}
+
+.grupo-campo > input,
+.grupo-campo select {
+  height: 41px;
+  padding: 0 12px;
+  outline: none;
+}
+
+.campo-entrada:focus,
+.grupo-campo > input:focus,
+.grupo-campo select:focus,
+.grupo-campo textarea:focus,
+.campo-com-icone:focus-within {
+  border-color: var(--cor-verde);
+}
+
+.campo-destaque {
+  border-color: var(--cor-verde);
+}
+
+.grupo-campo textarea {
+  min-height: 90px;
+  padding: 11px 12px;
+  resize: vertical;
+  outline: none;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.contador-caracteres {
+  margin: 6px 0 0;
+  color: var(--cor-suave);
+  font-size: 10px;
+}
+
+/* 5. Campos com ícones e grades */
+.campo-com-icone {
+  height: 41px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 11px;
+}
+
+.campo-com-icone > span {
+  flex: 0 0 auto;
+  color: var(--cor-suave);
+  font-size: 15px;
+}
+
+.campo-com-icone input,
+.campo-com-icone select {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--cor-texto);
+  font-size: 12px;
+}
+
+.campo-com-icone select {
+  appearance: none;
+}
+
+.grade-campos {
+  display: grid;
+  gap: 13px;
+}
+
+.grade-dupla {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grade-tripla {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* 6. Opções de formato */
+.grupo-formato {
+  margin-top: 1px;
+}
+
+.opcoes-formato {
+  width: fit-content;
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  padding: 4px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  background: var(--cor-campo);
+}
+
+.opcao-formato {
+  cursor: pointer;
+}
+
+.opcao-formato input,
+.etiqueta-opcao input,
+.cartao-selo input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.opcao-formato span {
+  min-height: 31px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  border-radius: 7px;
+  color: var(--cor-secundaria);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.opcao-formato input:checked + span {
+  background: var(--cor-verde);
+  color: #071000;
+}
+
+/* 7. Público-alvo */
+.grupo-publico {
+  margin-top: 2px;
+}
+
+.lista-opcoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.etiqueta-opcao {
+  cursor: pointer;
+}
+
+.etiqueta-opcao span {
+  min-height: 31px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 18px;
+  background: var(--cor-campo);
+  color: var(--cor-secundaria);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.etiqueta-opcao input:checked + span {
+  border-color: #5e9b0c;
+  background: var(--cor-verde-escuro);
+  color: var(--cor-verde);
+}
+
+/* 8. Selos e destaques */
+.lista-selos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cartao-selo {
+  min-height: 39px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 9px;
+  border: 1px solid #222d24;
+  border-radius: 9px;
+  background: var(--cor-campo);
+  cursor: pointer;
+}
+
+.cartao-selo.selo-ativo {
+  border-color: #527d1a;
+}
+
+.cartao-selo input {
+  position: static;
+  width: 13px;
+  height: 13px;
+  overflow: visible;
+  clip: auto;
+  accent-color: var(--cor-verde);
+}
+
+.selo {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+  padding: 0 8px;
+  border: 1px solid currentColor;
+  border-radius: 14px;
+  font-family: var(--fonte-mono);
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.selo-laranja {
+  color: var(--cor-laranja);
+  background: rgb(245 166 35 / 10%);
+}
+.selo-azul {
+  color: var(--cor-azul);
+  background: rgb(41 199 223 / 10%);
+}
+.selo-roxo {
+  color: var(--cor-roxo);
+  background: rgb(167 123 234 / 10%);
+}
+.selo-rosa {
+  color: var(--cor-rosa);
+  background: rgb(237 104 167 / 10%);
+}
+.selo-cinza {
+  color: #849087;
+  background: rgb(132 144 135 / 10%);
+}
+
+.observacao-selos {
+  margin: 16px 0 0;
+  color: var(--cor-secundaria);
+  font-size: 10px;
+}
+
+/* 9. Barra lateral e pré-visualização */
+.barra-lateral {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+
+.rotulo-previsualizacao {
+  display: block;
+  margin: 2px 0 0;
+  color: var(--cor-secundaria);
+  font-family: var(--fonte-mono);
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.cartao-previa,
+.cartao-completude,
+.cartao-cancelamento {
+  overflow: hidden;
+  border: 1px solid var(--cor-borda);
+  border-radius: 13px;
+  background: var(--cor-painel);
+}
+
+.cabecalho-cartao-previa {
+  height: 103px;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  padding: 12px;
+  overflow: hidden;
+  border-bottom: 1px solid #202b1b;
+  background:
+    linear-gradient(180deg, rgb(30 48 12 / 65%), transparent),
+    repeating-linear-gradient(0deg, transparent 0 27px, rgb(120 150 60 / 8%) 27px 28px);
+}
+
+.data-cartao {
+  z-index: 1;
+  width: 53px;
+  height: 55px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #548d00;
+  border-radius: 10px;
+  background: #0b110b;
+}
+
+.data-cartao span {
+  color: var(--cor-verde);
+  font-family: var(--fonte-mono);
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.data-cartao strong {
+  font-size: 23px;
+  line-height: 1.2;
+}
+
+.simbolo-codigo {
+  position: absolute;
+  top: -24px;
+  right: 9px;
+  color: rgb(139 229 0 / 9%);
+  font-family: var(--fonte-mono);
+  font-size: 105px;
+  font-weight: 800;
+  letter-spacing: -17px;
+  transform: rotate(-8deg);
+}
+
+.conteudo-cartao-previa {
+  padding: 12px 15px 15px;
+}
+
+.categoria-previa {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 5px 9px;
+  border-radius: 12px;
+  background: #0b110b;
+  color: var(--cor-verde);
+  font-family: var(--fonte-mono);
+  font-size: 9px;
+}
+
+.selos-previa {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.conteudo-cartao-previa h2 {
+  margin: 0 0 11px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.detalhes-evento {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0 0 13px;
+  border-bottom: 1px solid var(--cor-borda);
+  color: var(--cor-secundaria);
+  font-size: 10px;
+  list-style: none;
+}
+
+.detalhes-evento li:first-letter {
+  color: var(--cor-verde);
+}
+
+.botoes-previa {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  padding-top: 11px;
+}
+
+.botoes-previa .botao {
+  min-width: 0;
+  min-height: 30px;
+  padding: 0 6px;
+  font-size: 10px;
+}
+
+.botao-contorno {
+  border-color: var(--cor-verde);
+  background: transparent;
+  color: var(--cor-verde);
+}
+
+/* 10. Indicador de ficha completa */
+.cartao-completude {
+  padding: 16px;
+}
+
+.cabecalho-completude {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.cabecalho-completude h2,
+.cartao-cancelamento h2 {
+  margin: 0;
+  font-size: 13px;
+}
+
+.cabecalho-completude strong {
+  color: var(--cor-verde);
+  font-family: var(--fonte-mono);
+  font-size: 9px;
+}
+
+.cartao-completude ul {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cartao-completude li {
+  color: #cbd2ca;
+  font-size: 10px;
+}
+
+.cartao-completude li::first-letter {
+  color: var(--cor-verde);
+}
+
+/* 11. Cancelamento */
+.cartao-cancelamento {
+  padding: 16px;
+  border-color: #713027;
+  background: #171210;
+}
+
+.cartao-cancelamento p {
+  margin: 10px 0;
+  color: var(--cor-secundaria);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.botao-cancelar {
+  width: 100%;
+  min-height: 31px;
+  border: 1px solid #a53b32;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--cor-vermelho);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* 12. Ajustes para telas médias */
+@media (max-width: 1050px) {
+  .estrutura-cadastro {
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 16px;
+  }
+
+  .cartao-formulario {
+    padding: 20px 17px;
+  }
+  .grade-tripla {
+    gap: 8px;
+  }
+}
+
+/* 13. Layout para tablets e celulares */
+@media (max-width: 760px) {
+  .conteudo-administrativo {
+    padding: 24px 16px 36px;
+  }
+
+  .cabecalho-conteudo {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  .acoes-cabecalho {
+    width: 100%;
+    padding-top: 0;
+  }
+
+  .acoes-cabecalho .botao {
+    flex: 1;
+  }
+
+  .estrutura-cadastro {
+    grid-template-columns: 1fr;
+  }
+  .barra-lateral {
+    grid-row: 1;
+  }
+  .cartao-previa {
+    max-width: 430px;
+  }
+  .cartao-completude,
+  .cartao-cancelamento {
+    max-width: 430px;
+  }
+}
+
+/* Ajustes para celulares compactos */
+@media (max-width: 520px) {
+  .cabecalho-conteudo h1 {
+    font-size: 29px;
+  }
+  .grade-dupla,
+  .grade-tripla {
+    grid-template-columns: 1fr;
+  }
+  .cartao-formulario {
+    padding: 19px 15px;
+  }
+  .acoes-cabecalho {
+    gap: 8px;
+  }
+  .acoes-cabecalho .botao {
+    padding: 0 10px;
+    font-size: 11px;
+  }
+  .opcoes-formato {
+    width: 100%;
+  }
+  .opcao-formato {
+    flex: 1;
+  }
+  .opcao-formato span {
+    justify-content: center;
+    padding: 0 7px;
+  }
+  .botoes-previa {
+    grid-template-columns: 1fr;
+  }
+}

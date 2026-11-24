@@ -1,0 +1,158 @@
+<!-- Tela de acesso ao painel dos organizadores -->
+<main class="pagina-acesso">
+  <!-- Apresentação da comunidade e do painel -->
+  <section class="painel-apresentacao" aria-label="Apresentação do painel">
+    <a class="link-marca" href="/" aria-label="Meetup Tech SP - página inicial">
+      <img class="logo-marca" src="Logo.png" alt="Logo Meetup Tech SP" />
+    </a>
+
+    <div class="conteudo-apresentacao">
+      <span class="identificacao-painel">PAINEL DOS ORGANIZADORES</span>
+      <h1>Publique eventos com ficha padronizada em poucos minutos.</h1>
+      <p>
+        Cadastre, edite e cancele eventos da comunidade. Tudo o que você publicar aparece no
+        calendário do site, organizado por data, área e público.
+      </p>
+    </div>
+
+    <div class="marcador-codigo" aria-hidden="true">&lt;/&gt;</div>
+
+    <div class="etiquetas-institucionais" aria-label="Objetivos de desenvolvimento sustentável">
+      <span>ODS 10</span>
+      <span>ODS 11</span>
+      <span>Inclusão digital</span>
+    </div>
+  </section>
+
+  <!-- Formulário visual de acesso -->
+  <section class="painel-login" aria-labelledby="titulo-login">
+    <a class="link-voltar" href="/"><span aria-hidden="true">←</span> Voltar ao site</a>
+
+    <div class="icone-acesso" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <rect x="4" y="10" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.8" />
+        <path
+          d="M8 10V7a4 4 0 0 1 8 0v3"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      </svg>
+    </div>
+
+    <!-- Título e identificação da área restrita -->
+    <header class="cabecalho-login">
+      <h2 id="titulo-login">Acesso restrito</h2>
+      <p>Área exclusiva para administradores e fundadores da comunidade.</p>
+    </header>
+
+    <!-- Campos de acesso -->
+    <form class="formulario-login">
+      <div class="campo-formulario">
+        <label for="email">E-mail</label>
+        <div class="campo-com-icone">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect
+              x="3"
+              y="5"
+              width="18"
+              height="14"
+              rx="2"
+              stroke="currentColor"
+              stroke-width="1.7"
+            />
+            <path
+              d="m4 7 8 6 8-6"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Joana@meetuptechsp.com.br"
+            autocomplete="username"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="campo-formulario">
+        <label for="senha">Senha</label>
+        <div class="campo-com-icone campo-senha">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect
+              x="4"
+              y="10"
+              width="16"
+              height="11"
+              rx="2"
+              stroke="currentColor"
+              stroke-width="1.7"
+            />
+            <path
+              d="M8 10V7a4 4 0 0 1 8 0v3"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+            />
+          </svg>
+          <input
+            id="senha"
+            name="senha"
+            type="password"
+            placeholder="••••••••••"
+            autocomplete="current-password"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="opcoes-login">
+        <label class="opcao-manter">
+          <input type="checkbox" name="manter-conectado" checked />
+          <span>Manter conectado</span>
+        </label>
+        <a class="link-recuperar" href="#recuperar-senha">Esqueci minha senha</a>
+      </div>
+
+      <button class="botao-entrar" type="button" routerLink="/eventos">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M10 17l5-5-5-5M15 12H3"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M13 4h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+          />
+        </svg>
+        Entrar no painel
+      </button>
+    </form>
+
+    <!-- Aviso de segurança -->
+    <aside class="aviso-seguranca">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M12 3 19 6v5c0 4.5-3 7.8-7 10-4-2.2-7-5.5-7-10V6l7-3Z"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linejoin="round"
+        />
+      </svg>
+      <p>
+        Senhas criptografadas e conexão segura. Após 5 tentativas incorretas o acesso é bloqueado
+        por 15 min.
+      </p>
+    </aside>
+  </section>
+</main>

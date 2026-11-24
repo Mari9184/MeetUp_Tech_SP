@@ -1,0 +1,212 @@
+<!-- Estrutura geral do painel administrativo -->
+<div class="layout-administrativo">
+  <app-menu-lateral />
+  <div class="conteudo-administrativo">
+    <main class="pagina-administrativa">
+      <!-- Título e ação principal -->
+      <header class="cabecalho-pagina">
+        <div>
+          <span class="sobretitulo">PAINEL ADMINISTRATIVO</span>
+          <h1>Eventos</h1>
+        </div>
+        <a class="botao-cadastrar" href="/cadastrando-evento-adm"
+          ><span aria-hidden="true">＋</span> Cadastrar evento</a
+        >
+      </header>
+
+      <!-- Indicadores do calendário -->
+      <section class="painel-indicadores" aria-label="Resumo dos eventos">
+        <article class="cartao-indicador">
+          <div class="indicador-cabecalho">
+            <span>Eventos publicados</span><span class="icone-indicador icone-verde">▦</span>
+          </div>
+          <strong class="valor-indicador">18</strong
+          ><span class="variacao-indicador variacao-positiva">+4 este mês</span>
+        </article>
+        <article class="cartao-indicador">
+          <div class="indicador-cabecalho">
+            <span>Nos próximos 30 dias</span><span class="icone-indicador icone-amarela">◷</span>
+          </div>
+          <strong class="valor-indicador">6</strong
+          ><span class="variacao-indicador variacao-alerta">2 com vagas limitadas</span>
+        </article>
+        <article class="cartao-indicador">
+          <div class="indicador-cabecalho">
+            <span>Interessados (Google Agenda)</span
+            ><span class="icone-indicador icone-verde">♧</span>
+          </div>
+          <strong class="valor-indicador">742</strong
+          ><span class="variacao-indicador variacao-positiva">+18% vs. mês anterior</span>
+        </article>
+        <article class="cartao-indicador">
+          <div class="indicador-cabecalho">
+            <span>Cancelados</span><span class="icone-indicador icone-vermelha">⊗</span>
+          </div>
+          <strong class="valor-indicador">2</strong
+          ><span class="variacao-indicador variacao-negativa">Membros avisados</span>
+        </article>
+      </section>
+
+      <!-- Ferramentas, tabela e navegação de páginas -->
+      <section class="painel-eventos" aria-label="Gerenciamento de eventos">
+        <!-- Filtros por status e busca -->
+        <header class="barra-ferramentas">
+          <nav class="abas-eventos" aria-label="Filtros de status">
+            <a class="aba-eventos aba-selecionada" href="#todos">✓ &nbsp;Todos (24)</a>
+            <a class="aba-eventos" href="#publicados">Publicados (18)</a>
+            <a class="aba-eventos" href="#rascunhos">Rascunhos (2)</a>
+            <a class="aba-eventos" href="#cancelados">Cancelados (2)</a>
+            <a class="aba-eventos" href="#encerrados">Encerrados (2)</a>
+          </nav>
+          <label class="campo-pesquisa"
+            ><span aria-hidden="true">⌕</span
+            ><input type="search" placeholder="Buscar evento..." aria-label="Buscar evento"
+          /></label>
+        </header>
+
+        <!-- Tabela de eventos -->
+        <div class="tabela-rolagem">
+          <table class="tabela-eventos">
+            <thead>
+              <tr>
+                <th>Evento</th>
+                <th>Data</th>
+                <th>Formato</th>
+                <th>Vagas</th>
+                <th>Status</th>
+                <th class="coluna-acoes">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="celula-evento">
+                  <strong>React Summit SP: Server Components na prática</strong
+                  ><span>Dev · Nubank</span>
+                </td>
+                <td>04/12 · 19h</td>
+                <td><span class="etiqueta-formato">Presencial</span></td>
+                <td>48 / 80</td>
+                <td><span class="etiqueta-status status-publicado">Publicado</span></td>
+                <td class="celula-acoes">
+                  <button class="botao-acao" type="button" aria-label="Visualizar">◎</button>
+                  <button class="botao-acao" type="button" aria-label="Editar">／</button>
+                  <button class="botao-acao botao-cancelar" type="button" aria-label="Cancelar">
+                    ⊗
+                  </button>
+                  <button class="botao-acao botao-excluir" type="button" aria-label="Excluir">
+                    ♧
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="celula-evento">
+                  <strong>Data Night: dbt e BigQuery</strong><span>Dados · iFood</span>
+                </td>
+                <td>09/12 · 19h30</td>
+                <td><span class="etiqueta-formato">Online</span></td>
+                <td>Ilimitadas</td>
+                <td><span class="etiqueta-status status-publicado">Publicado</span></td>
+                <td class="celula-acoes">
+                  <button class="botao-acao" type="button" aria-label="Visualizar">◎</button>
+                  <button class="botao-acao" type="button" aria-label="Editar">／</button>
+                  <button class="botao-acao botao-cancelar" type="button" aria-label="Cancelar">
+                    ⊗
+                  </button>
+                  <button class="botao-acao botao-excluir" type="button" aria-label="Excluir">
+                    ♧
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="celula-evento">
+                  <strong>Mulheres no Design: portfólio em UX</strong><span>UX/UI · Itaú</span>
+                </td>
+                <td>13/12 · 10h</td>
+                <td><span class="etiqueta-formato">Presencial</span></td>
+                <td>22 / 40</td>
+                <td><span class="etiqueta-status status-publicado">Publicado</span></td>
+                <td class="celula-acoes">
+                  <button class="botao-acao" type="button" aria-label="Visualizar">◎</button>
+                  <button class="botao-acao" type="button" aria-label="Editar">／</button>
+                  <button class="botao-acao botao-cancelar" type="button" aria-label="Cancelar">
+                    ⊗
+                  </button>
+                  <button class="botao-acao botao-excluir" type="button" aria-label="Excluir">
+                    ♧
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="celula-evento">
+                  <strong>IA generativa no dia a dia</strong><span>IA · Microsoft</span>
+                </td>
+                <td>15/01 · 19h</td>
+                <td><span class="etiqueta-formato">Presencial</span></td>
+                <td>110 / 120</td>
+                <td><span class="etiqueta-status status-rascunho">Rascunho</span></td>
+                <td class="celula-acoes">
+                  <button class="botao-acao" type="button" aria-label="Visualizar">◎</button>
+                  <button class="botao-acao" type="button" aria-label="Editar">／</button>
+                  <button class="botao-acao botao-cancelar" type="button" aria-label="Cancelar">
+                    ⊗
+                  </button>
+                  <button class="botao-acao botao-excluir" type="button" aria-label="Excluir">
+                    ♧
+                  </button>
+                </td>
+              </tr>
+              <tr class="linha-inativa">
+                <td class="celula-evento">
+                  <strong>Workshop de Kubernetes</strong><span>Cloud · Red Hat</span>
+                </td>
+                <td>18/12 · 19h</td>
+                <td><span class="etiqueta-formato">Híbrido</span></td>
+                <td>0 / 60</td>
+                <td><span class="etiqueta-status status-cancelado">Cancelado</span></td>
+                <td class="celula-acoes">
+                  <button class="botao-acao" type="button" aria-label="Visualizar">◎</button>
+                  <button class="botao-acao" type="button" aria-label="Editar">／</button>
+                  <button class="botao-acao botao-cancelar" type="button" aria-label="Cancelar">
+                    ⊗
+                  </button>
+                  <button class="botao-acao botao-excluir" type="button" aria-label="Excluir">
+                    ♧
+                  </button>
+                </td>
+              </tr>
+              <tr class="linha-inativa">
+                <td class="celula-evento">
+                  <strong>Segurança ofensiva: CTF guiado</strong><span>Segurança · Senac SP</span>
+                </td>
+                <td>29/01 · 19h</td>
+                <td><span class="etiqueta-formato">Presencial</span></td>
+                <td>80 / 80</td>
+                <td><span class="etiqueta-status status-encerrado">Encerrado</span></td>
+                <td class="celula-acoes">
+                  <button class="botao-acao" type="button" aria-label="Visualizar">◎</button>
+                  <button class="botao-acao" type="button" aria-label="Editar">／</button>
+                  <button class="botao-acao botao-cancelar" type="button" aria-label="Cancelar">
+                    ⊗
+                  </button>
+                  <button class="botao-acao botao-excluir" type="button" aria-label="Excluir">
+                    ♧
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Contagem e paginação visual -->
+        <footer class="rodape-tabela">
+          <span>Mostrando 6 de 24 eventos</span>
+          <nav class="paginacao" aria-label="Paginação">
+            <a class="pagina-atual" href="#pagina-1" aria-current="page">1</a>
+            <a href="#pagina-2">2</a>
+            <a href="#pagina-3">3</a>
+            <a href="#pagina-4">4</a>
+          </nav>
+        </footer>
+      </section>
+    </main>
+  </div>
+</div>

@@ -1,0 +1,409 @@
+<!-- Cabeçalho e navegação pública -->
+<header class="barra-superior">
+  <nav aria-label="Navega&ccedil;&atilde;o principal" class="navegacao conteiner">
+    <a aria-label="Meetup Tech SP" class="marca" href="/">
+      <img class="imagem-marca" src="Logo.png" alt="" />
+    </a>
+    <div class="links-navegacao">
+      <a class="ativo" href="#eventos"> Eventos </a>
+      <a href="#sobre"> Sobre </a>
+    </div>
+    <a class="link-administracao" href="/login">
+      <span> ♙ </span>
+      &Aacute;rea do admin
+    </a>
+  </nav>
+</header>
+<main>
+  <!-- Apresentação e evento em destaque -->
+  <section class="apresentacao conteiner">
+    <div class="texto-apresentacao">
+      <span class="texto-destaque etiqueta-arredondada">
+        <span class="simbolo-destaque"> &lsaquo; &rsaquo; </span>
+        EVENTOS QUE CONECTAM
+      </span>
+      <h1>
+        Todos os eventos tech
+        <br />
+        de
+        <em> S&atilde;o Paulo </em>
+        em um
+        <br />
+        s&oacute; lugar.
+      </h1>
+      <p>
+        Chega de perder inscri&ccedil;&atilde;o no meio das mensagens do grupo. Encontre meetups,
+        workshops e palestras por data, &aacute;rea e p&uacute;blico &mdash; e salve direto no seu
+        Google Agenda.
+      </p>
+      <a class="botao principal" href="#eventos"> ▦ &nbsp; Ver pr&oacute;ximos eventos </a>
+      <section class="estatisticas" aria-label="Indicadores da comunidade">
+        <article>
+          <strong> 120+ </strong>
+          <small> eventos por ano </small>
+        </article>
+        <article>
+          <strong> 3,4 mil </strong>
+          <small> membros na comunidade </small>
+        </article>
+        <article>
+          <strong> 100% </strong>
+          <small> gratuito para consultar </small>
+        </article>
+      </section>
+    </div>
+    <aside class="lateral-apresentacao">
+      <div class="rotulo-evento-destaque">
+        <span> </span>
+        PR&Oacute;XIMO EVENTO EM DESTAQUE
+      </div>
+      <article class="cartao-evento-destaque">
+        <div class="ilustracao-evento">
+          <div class="data-evento">
+            <small> DEZ </small>
+            <b> 04 </b>
+          </div>
+          <span class="ilustracao-codigo"> &lt;/&gt; </span>
+        </div>
+        <div class="conteudo-evento-destaque">
+          <span class="etiqueta etiqueta-desenvolvimento"> &lsaquo; &rsaquo; DEV </span>
+          <div class="etiquetas">
+            <span class="etiqueta verde"> ◉ PRESENCIAL </span>
+            <span class="etiqueta ambar"> ◆ VAGAS LIMITADAS </span>
+          </div>
+          <h3>React Summit SP: Server Components na pr&aacute;tica</h3>
+          <ul class="informacoes-evento">
+            <li>◷ &nbsp;Qui, 04 dez &middot; 19h00 &ndash; 22h00</li>
+            <li>♧ &nbsp;Google for Startups &middot; Av. Paulista</li>
+            <li>▦ &nbsp;Esta&ccedil;&atilde;o Brigadeiro (Linha 2 &ndash; Verde)</li>
+            <li>▤ &nbsp;Organiza&ccedil;&atilde;o: Nubank</li>
+          </ul>
+          <div class="acoes-cartao">
+            <a class="botao principal" href="/evento"> Ver detalhes </a>
+            <a class="botao contornado" href="#agenda"> ▦ &nbsp; Google Agenda </a>
+          </div>
+        </div>
+      </article>
+      <div class="prova-social">
+        <span class="avatares">
+          <i> AL </i>
+          <i> CF </i>
+          <i> MS </i>
+        </span>
+        <span>
+          <b> 12 membros v&atilde;o </b>
+          <small> Procurando companhia? V&aacute; em grupo! </small>
+        </span>
+      </div>
+    </aside>
+  </section>
+
+  <!-- Calendário e ferramentas de busca de eventos -->
+  <section class="secao-eventos conteiner" id="eventos">
+    <header class="cabecalho-secao">
+      <div>
+        <span class="subtitulo-secao"> CALEND&Aacute;RIO </span>
+        <h2>Pr&oacute;ximos eventos</h2>
+        <p>Organizados por data. Use os filtros para achar o que combina com voc&ecirc;.</p>
+      </div>
+      <div class="ferramentas-busca">
+        <label class="campo-busca">
+          <span> &telrec; </span>
+          <input placeholder="Buscar por evento, empresa ou local..." type="search" />
+        </label>
+        <button aria-label="Visualiza&ccedil;&atilde;o em grade" class="botao-visualizacao ativo">
+          ▦
+        </button>
+        <button
+          aria-label="Visualiza&ccedil;&atilde;o em calend&aacute;rio"
+          class="botao-visualizacao"
+        >
+          ▣
+        </button>
+      </div>
+    </header>
+
+    <!-- Filtros e ordenação dos eventos -->
+    <section class="filtros" aria-label="Filtros de eventos">
+      <div class="linha-filtro">
+        <span class="rotulo-filtro"> &Aacute;REA </span>
+        <div class="opcoes-filtro">
+          <button class="opcao-filtro selecionado">&checkmark; Todas</button>
+          <button class="opcao-filtro">Dados</button>
+          <button class="opcao-filtro">Dev</button>
+          <button class="opcao-filtro">UX/UI</button>
+          <button class="opcao-filtro">Cloud</button>
+          <button class="opcao-filtro">IA</button>
+          <button class="opcao-filtro">Seguran&ccedil;a</button>
+          <button class="opcao-filtro">Carreira</button>
+        </div>
+      </div>
+      <div class="linha-filtro">
+        <span class="rotulo-filtro"> FORMATO </span>
+        <div class="opcoes-filtro">
+          <button class="opcao-filtro">Todos</button>
+          <button class="opcao-filtro selecionado">&checkmark; Presencial</button>
+          <button class="opcao-filtro">Online</button>
+          <button class="opcao-filtro">H&iacute;brido</button>
+        </div>
+      </div>
+      <div class="linha-filtro">
+        <span class="rotulo-filtro"> P&Uacute;BLICO-ALVO </span>
+        <div class="opcoes-filtro">
+          <button class="opcao-filtro selecionado">&checkmark; Todos</button>
+          <button class="opcao-filtro">Iniciantes</button>
+          <button class="opcao-filtro">Mulheres na Tech</button>
+          <button class="opcao-filtro">Intermedi&aacute;rio/Avan&ccedil;ado</button>
+          <button class="opcao-filtro">Exclusivo membros</button>
+        </div>
+      </div>
+      <div class="rodape-filtros">
+        <span>
+          <b> 6 </b>
+          eventos encontrados &middot; Presencial
+          <button class="limpar-filtros">Limpar filtros</button>
+        </span>
+        <span class="ordenacao">
+          Ordenar:
+          <b> Data mais pr&oacute;xima⌄ </b>
+        </span>
+      </div>
+    </section>
+
+    <!-- Eventos de dezembro de 2026 -->
+    <h3 class="cabecalho-mes">DEZEMBRO 2026</h3>
+    <section class="grade-eventos" aria-label="Eventos de dezembro de 2026">
+      <article class="cartao-evento">
+        <div class="ilustracao-evento">
+          <div class="data-evento">
+            <small> DEZ </small>
+            <b> 04 </b>
+          </div>
+          <span class="ilustracao-codigo"> &lt;/&gt; </span>
+        </div>
+        <div class="corpo-cartao-evento">
+          <span class="etiqueta etiqueta-desenvolvimento"> &lsaquo; &rsaquo; DEV </span>
+          <div class="etiquetas">
+            <span class="etiqueta verde"> ◉ PRESENCIAL </span>
+            <span class="etiqueta ambar"> ◆ VAGAS LIMITADAS </span>
+          </div>
+          <h3>React Summit SP: Server Components na pr&aacute;tica</h3>
+          <ul class="informacoes-evento">
+            <li>◷ &nbsp;Qui, 04 dez &middot; 19h00 &ndash; 22h00</li>
+            <li>♧ &nbsp;Google for Startups &middot; Av. Paulista</li>
+            <li>▦ &nbsp;Esta&ccedil;&atilde;o Brigadeiro (Linha 2 &ndash; Verde)</li>
+            <li>▤ &nbsp;Organiza&ccedil;&atilde;o: Nubank</li>
+          </ul>
+          <div class="acoes-cartao">
+            <a class="botao principal" href="/evento"> Ver detalhes </a>
+            <a class="botao contornado" href="#agenda"> ▦ &nbsp; Google Agenda </a>
+          </div>
+        </div>
+      </article>
+      <article class="cartao-evento">
+        <div class="ilustracao-evento">
+          <div class="data-evento">
+            <small> DEZ </small>
+            <b> 09 </b>
+          </div>
+          <span class="ilustracao-codigo"> &lt;/&gt; </span>
+        </div>
+        <div class="corpo-cartao-evento">
+          <span class="etiqueta etiqueta-dados"> ▦ DADOS </span>
+          <div class="etiquetas">
+            <span class="etiqueta verde"> ◉ ONLINE </span>
+            <span class="etiqueta azul"> ◆ INICIANTES </span>
+          </div>
+          <h3>Data Night: engenharia de dados com dbt e BigQuery</h3>
+          <ul class="informacoes-evento">
+            <li>◷ &nbsp;Ter, 09 dez &middot; 19h30 &ndash; 21h30</li>
+            <li>♧ &nbsp;Online &middot; transmiss&atilde;o ao vivo</li>
+            <li>▦ &nbsp;Sem deslocamento &mdash; assista de casa</li>
+            <li>▤ &nbsp;Organiza&ccedil;&atilde;o: iFood</li>
+          </ul>
+          <div class="acoes-cartao">
+            <a class="botao principal" href="/evento"> Ver detalhes </a>
+            <a class="botao contornado" href="#agenda"> ▦ &nbsp; Google Agenda </a>
+          </div>
+        </div>
+      </article>
+      <article class="cartao-evento">
+        <div class="ilustracao-evento">
+          <div class="data-evento">
+            <small> DEZ </small>
+            <b> 13 </b>
+          </div>
+          <span class="ilustracao-codigo"> &lt;/&gt; </span>
+        </div>
+        <div class="corpo-cartao-evento">
+          <span class="etiqueta etiqueta-ux-ui"> ▣ UX/UI </span>
+          <div class="etiquetas">
+            <span class="etiqueta verde"> ◉ PRESENCIAL </span>
+            <span class="etiqueta rosa"> ◆ MULHERES NA TECH </span>
+          </div>
+          <h3>Mulheres no Design: portf&oacute;lio e entrevistas em UX</h3>
+          <ul class="informacoes-evento">
+            <li>◷ &nbsp;S&aacute;b, 13 dez &middot; 10h00 &ndash; 13h00</li>
+            <li>♧ &nbsp;Cubo Ita&uacute; &middot; Vila Ol&iacute;mpia</li>
+            <li>▦ &nbsp;Esta&ccedil;&atilde;o Vila Ol&iacute;mpia (Linha 9 &ndash; Esmeralda)</li>
+            <li>▤ &nbsp;Organiza&ccedil;&atilde;o: Ita&uacute; Unibanco</li>
+          </ul>
+          <div class="acoes-cartao">
+            <a class="botao principal" href="/evento"> Ver detalhes </a>
+            <a class="botao contornado" href="#agenda"> ▦ &nbsp; Google Agenda </a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Eventos de janeiro de 2027 -->
+    <h3 class="cabecalho-mes segundo-mes">JANEIRO 2027</h3>
+    <section class="grade-eventos" aria-label="Eventos de janeiro de 2027">
+      <article class="cartao-evento">
+        <div class="ilustracao-evento">
+          <div class="data-evento">
+            <small> JAN </small>
+            <b> 15 </b>
+          </div>
+          <span class="ilustracao-codigo"> &lt;/&gt; </span>
+        </div>
+        <div class="corpo-cartao-evento">
+          <span class="etiqueta etiqueta-ia"> ✦ IA </span>
+          <div class="etiquetas">
+            <span class="etiqueta verde"> ◉ PRESENCIAL </span>
+            <span class="etiqueta ambar"> ◆ VAGAS LIMITADAS </span>
+          </div>
+          <h3>IA generativa no dia a dia de quem desenvolve</h3>
+          <ul class="informacoes-evento">
+            <li>◷ &nbsp;Qui, 15 jan &middot; 19h00 &ndash; 22h00</li>
+            <li>♧ &nbsp;Universidade Mackenzie &middot; Consola&ccedil;&atilde;o</li>
+            <li>▦ &nbsp;Esta&ccedil;&atilde;o Higien&oacute;polis-Mackenzie (Linha 4)</li>
+            <li>▤ &nbsp;Organiza&ccedil;&atilde;o: Microsoft</li>
+          </ul>
+          <div class="acoes-cartao">
+            <a class="botao principal" href="/evento"> Ver detalhes </a>
+            <a class="botao contornado" href="#agenda"> ▦ &nbsp; Google Agenda </a>
+          </div>
+        </div>
+      </article>
+      <article class="cartao-evento">
+        <div class="ilustracao-evento">
+          <div class="data-evento">
+            <small> JAN </small>
+            <b> 22 </b>
+          </div>
+          <span class="ilustracao-codigo"> &lt;/&gt; </span>
+        </div>
+        <div class="corpo-cartao-evento">
+          <span class="etiqueta etiqueta-nuvem"> ▰ CLOUD </span>
+          <div class="etiquetas">
+            <span class="etiqueta verde"> ◉ PRESENCIAL </span>
+            <span class="etiqueta roxo"> ◆ EXCLUSIVO </span>
+          </div>
+          <h3>AWS Community Day: arquitetura serverless</h3>
+          <ul class="informacoes-evento">
+            <li>◷ &nbsp;Qui, 22 jan &middot; 09h00 &ndash; 18h00</li>
+            <li>♧ &nbsp;WeWork &middot; Av. Faria Lima</li>
+            <li>▦ &nbsp;Esta&ccedil;&atilde;o Faria Lima (Linha 4 &ndash; Amarela)</li>
+            <li>▤ &nbsp;Organiza&ccedil;&atilde;o: AWS User Group SP</li>
+          </ul>
+          <div class="acoes-cartao">
+            <a class="botao principal" href="/evento"> Ver detalhes </a>
+            <a class="botao contornado" href="#agenda"> ▦ &nbsp; Google Agenda </a>
+          </div>
+        </div>
+      </article>
+      <article class="cartao-evento desativado">
+        <div class="ilustracao-evento">
+          <div class="data-evento">
+            <small> JAN </small>
+            <b> 29 </b>
+          </div>
+          <span class="ilustracao-codigo"> &lt;/&gt; </span>
+        </div>
+        <div class="corpo-cartao-evento">
+          <span class="etiqueta etiqueta-seguranca"> ♢ SEGURAN&Ccedil;A </span>
+          <div class="etiquetas">
+            <span class="etiqueta verde"> ◉ PRESENCIAL </span>
+            <span class="etiqueta discreto"> ◆ ENCERRADO </span>
+          </div>
+          <h3>Seguran&ccedil;a ofensiva para iniciantes: CTF guiado</h3>
+          <ul class="informacoes-evento">
+            <li>◷ &nbsp;Qui, 29 jan &middot; 19h00 &ndash; 22h00</li>
+            <li>♧ &nbsp;Senac Santo Amaro</li>
+            <li>▦ &nbsp;Esta&ccedil;&atilde;o Santo Amaro (Linha 5 &ndash; Lil&aacute;s)</li>
+            <li>▤ &nbsp;Organiza&ccedil;&atilde;o: Senac SP</li>
+          </ul>
+          <div class="acoes-cartao">
+            <span class="botao indisponivel"> Inscri&ccedil;&otilde;es encerradas </span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Ação de navegação do calendário -->
+    <footer class="mais-eventos">
+      <button class="botao botao-carregar-mais">⌄ &nbsp; Carregar mais eventos</button>
+    </footer>
+  </section>
+
+  <!-- Informações sobre a comunidade -->
+  <section class="secao-sobre conteiner" id="sobre">
+    <div>
+      <span class="subtitulo-secao"> SOBRE </span>
+      <h2>
+        Conectando a
+        <br />
+        comunidade tech de
+        <br />
+        S&atilde;o Paulo.
+      </h2>
+    </div>
+    <div class="texto-sobre">
+      <p>
+        O Meetup Tech SP re&uacute;ne eventos de tecnologia em S&atilde;o Paulo para aproximar
+        pessoas, compartilhar conhecimento e criar novas conex&otilde;es.
+      </p>
+      <p>
+        Encontre meetups, workshops e palestras por data, &aacute;rea e p&uacute;blico. Salve os
+        encontros no Google Agenda e organize sua pr&oacute;xima experi&ecirc;ncia.
+      </p>
+      <p>
+        Quer ir acompanhado? Adicione seu nome &agrave; lista de quem vai ao evento &mdash; sem
+        precisar criar uma conta.
+      </p>
+    </div>
+  </section>
+</main>
+
+<!-- Rodapé institucional e links complementares -->
+<footer class="rodape">
+  <div class="conteiner">
+    <div class="conteudo-rodape">
+      <div class="marca-rodape">
+        <img class="imagem-marca" src="Logo.png" alt="" />
+        <p>
+          Comunidade que re&uacute;ne eventos de tecnologia em S&atilde;o Paulo. Encontre encontros,
+          workshops e palestras em um s&oacute; lugar.
+        </p>
+      </div>
+      <nav class="coluna-rodape" aria-label="Navegação do rodapé">
+        <b> NAVEGA&Ccedil;&Atilde;O </b>
+        <a href="#eventos"> Eventos </a>
+        <a href="#sobre"> Sobre </a>
+      </nav>
+      <nav class="coluna-rodape" aria-label="Links legais">
+        <b> LEGAL </b>
+        <a href="#privacidade"> Pol&iacute;tica de privacidade (LGPD) </a>
+        <a href="#termos"> Termos de uso </a>
+        <a href="/login"> &Aacute;rea do admin </a>
+      </nav>
+    </div>
+    <div class="rodape-inferior">
+      <span>
+        &copy; 2026 Meetup Tech SP &middot; Projeto Integrador ADS &mdash; Senac Santo Amaro
+      </span>
+      <span> Coletamos apenas o m&iacute;nimo de dados, com seu consentimento. </span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,302 @@
+/* PAINEL ADMINISTRATIVO — IR EM GRUPO */
+
+/* 1. Variáveis e configurações gerais */
+:host {
+  display: block;
+  min-width: 320px;
+  min-height: 100vh;
+  --cor-cartao-secundario: var(--cor-superficie-secundaria);
+  --cor-cartao-selecionado: var(--cor-verde-fundo);
+}
+
+.conteudo-administrativo {
+  padding: 40px var(--espacamento-pagina);
+}
+
+.pagina-administrativa {
+  width: min(100%, var(--largura-conteudo));
+  margin: 0 auto;
+}
+
+/* 2. Cabeçalho */
+.cabecalho-pagina {
+  margin-bottom: 29px;
+}
+
+.sobretitulo {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--cor-verde);
+  font-family: var(--fonte-monospace);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+}
+
+.cabecalho-pagina h1 {
+  margin: 0;
+  font-size: clamp(34px, 3vw, 40px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+}
+
+.descricao-pagina {
+  margin: 12px 0 0;
+  color: var(--cor-texto-secundario);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* 3. Estrutura em duas colunas */
+.conteudo-principal {
+  display: grid;
+  grid-template-columns: 400px minmax(0, 656px);
+  align-items: start;
+  gap: 24px;
+}
+
+.painel-selecao,
+.painel-participantes {
+  border: 1px solid var(--cor-borda);
+  border-radius: 13px;
+  background: var(--cor-cartao);
+}
+
+/* 4. Seleção de eventos */
+.painel-selecao {
+  padding: 25px 24px 23px;
+}
+
+.painel-selecao h2 {
+  margin: 0 0 23px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+
+.rotulo-pesquisa {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--cor-texto);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* 5. Campo de pesquisa */
+.campo-pesquisa {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  background: var(--cor-cartao-secundario);
+  color: var(--cor-texto);
+}
+
+.campo-pesquisa:focus-within {
+  border-color: var(--cor-verde);
+  box-shadow: 0 0 0 2px rgb(139 229 0 / 8%);
+}
+
+.icone-pesquisa {
+  color: var(--cor-texto);
+  font-size: 25px;
+  line-height: 1;
+}
+
+.campo-pesquisa input {
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--cor-texto);
+  font-family: var(--fonte-principal);
+  font-size: 15px;
+}
+
+.campo-pesquisa input::placeholder {
+  color: var(--cor-texto-suave);
+}
+
+/* 6. Lista e cartões de eventos */
+.lista-eventos {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.cartao-evento {
+  min-height: 126px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 17px 16px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 9px;
+  background: var(--cor-cartao-secundario);
+  color: var(--cor-texto);
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.cartao-evento:hover {
+  border-color: #527d1a;
+  background: #1a2419;
+}
+
+.cartao-evento strong {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.evento-selecionado {
+  border-color: var(--cor-borda-destaque);
+  background: var(--cor-cartao-selecionado);
+}
+
+.evento-selecionado:hover {
+  background: #203512;
+}
+
+.data-evento {
+  margin-bottom: 9px;
+  color: var(--cor-texto-secundario);
+  font-size: 14px;
+}
+
+.quantidade-participantes {
+  color: var(--cor-texto-secundario);
+  font-size: 12px;
+}
+
+.participantes-com-vagas {
+  color: var(--cor-verde);
+}
+
+/* 7. Painel de participantes */
+.painel-participantes {
+  padding: 25px 24px 23px;
+}
+
+.categoria-evento {
+  display: block;
+  margin-bottom: 22px;
+  color: var(--cor-verde);
+  font-family: var(--fonte-monospace);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.1px;
+}
+
+.painel-participantes h2 {
+  margin: 0 0 21px;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.8px;
+}
+
+.data-completa {
+  margin: 0 0 23px;
+  color: var(--cor-texto-secundario);
+  font-size: 14px;
+}
+
+.painel-participantes h3 {
+  margin: 0 0 14px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.rotulo-nome {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--cor-texto-secundario);
+  font-size: 11px;
+}
+
+/* 8. Nomes dos participantes */
+.lista-participantes {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lista-participantes li {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 9px;
+  background: var(--cor-cartao-secundario);
+  color: var(--cor-texto);
+  font-size: 15px;
+}
+
+/* 9. Aviso de privacidade */
+.aviso-privacidade {
+  margin: 20px 0 0;
+  color: var(--cor-texto-secundario);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* 10. Tablets */
+@media (max-width: 900px) {
+  .conteudo-principal {
+    grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+    gap: 18px;
+  }
+
+  .painel-selecao,
+  .painel-participantes {
+    padding: 21px 18px;
+  }
+
+  .painel-participantes h2 {
+    font-size: 24px;
+  }
+}
+
+/* 11. Celulares */
+@media (max-width: 650px) {
+  .conteudo-administrativo {
+    padding: 28px 16px;
+  }
+  .cabecalho-pagina {
+    margin-bottom: 24px;
+  }
+  .cabecalho-pagina h1 {
+    font-size: 34px;
+  }
+  .descricao-pagina {
+    font-size: 14px;
+  }
+
+  .conteudo-principal {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .painel-selecao,
+  .painel-participantes {
+    padding: 20px 17px;
+  }
+
+  .painel-participantes h2 {
+    font-size: 23px;
+  }
+  .cartao-evento {
+    min-height: 115px;
+  }
+}

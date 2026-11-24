@@ -1,0 +1,77 @@
+<!-- Fundo e conteúdo do diálogo de edição -->
+<div class="fundo-modal">
+  <section
+    class="modal-administrador"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="titulo-editar-administrador"
+    aria-describedby="descricao-editar-administrador"
+  >
+    <!-- Título e objetivo do formulário -->
+    <header>
+      <h2 id="titulo-editar-administrador">Editar administrador</h2>
+      <p class="descricao-modal" id="descricao-editar-administrador">
+        Atualize os dados de acesso deste administrador.
+      </p>
+    </header>
+
+    <!-- Campos de identificação e contato -->
+    <form>
+      <div class="campo-formulario">
+        <label for="nome-administrador">Nome *</label>
+        <input
+          id="nome-administrador"
+          name="nome"
+          type="text"
+          placeholder="Nome do administrador"
+          autocomplete="name"
+          required
+          pattern=".*\S.*"
+          autofocus
+        />
+      </div>
+
+      <div class="campo-formulario">
+        <label for="email-administrador">E-mail *</label>
+        <div class="campo-com-icone">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect
+              x="3"
+              y="5"
+              width="18"
+              height="14"
+              rx="2"
+              stroke="currentColor"
+              stroke-width="1.7"
+            />
+            <path
+              d="m4 7 8 6 8-6"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <input
+            id="email-administrador"
+            name="email"
+            type="email"
+            placeholder="nome@exemplo.com"
+            autocomplete="email"
+            required
+          />
+        </div>
+      </div>
+
+      <p class="aviso-perfil">
+        Perfil de acesso: Administrador. Alterações não afetam os eventos já cadastrados.
+      </p>
+
+      <!-- Ações disponíveis no diálogo -->
+      <footer class="acoes-modal">
+        <button class="botao-cancelar" type="button">Cancelar</button>
+        <button class="botao-salvar" type="button">Salvar alterações</button>
+      </footer>
+    </form>
+  </section>
+</div>

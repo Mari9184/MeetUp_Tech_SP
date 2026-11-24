@@ -1,0 +1,66 @@
+<!-- Estrutura geral do painel administrativo -->
+<div class="layout-administrativo">
+  <app-menu-lateral />
+  <div class="conteudo-administrativo">
+    <main class="pagina-administrativa">
+      <!-- Título e orientação da página -->
+      <header class="cabecalho-pagina">
+        <span class="sobretitulo">PAINEL ADMINISTRATIVO</span>
+        <h1>Ir em grupo</h1>
+        <p class="descricao-pagina">
+          Acompanhe quem vai a cada evento. Apenas os nomes autorizados são exibidos.
+        </p>
+      </header>
+
+      <!-- Seleção do evento e lista de participantes -->
+      <section class="conteudo-principal" aria-label="Participantes dos eventos">
+        <!-- Filtros e eventos disponíveis -->
+        <aside class="painel-selecao">
+          <h2>Selecione um evento</h2>
+          <label class="rotulo-pesquisa" for="pesquisa-evento">Buscar evento</label>
+          <div class="campo-pesquisa">
+            <span class="icone-pesquisa" aria-hidden="true">⌕</span>
+            <input id="pesquisa-evento" type="search" placeholder="Nome do evento..." />
+          </div>
+
+          <nav class="lista-eventos" aria-label="Lista de eventos">
+            <a class="cartao-evento evento-selecionado" href="#react-summit" aria-current="true">
+              <strong>React Summit SP: Server Components na prática</strong>
+              <span class="data-evento">04 dez 2026 · 19h</span>
+              <span class="quantidade-participantes participantes-com-vagas">4 participantes</span>
+            </a>
+            <a class="cartao-evento" href="#data-night">
+              <strong>Data Night: engenharia de dados com dbt e BigQuery</strong>
+              <span class="data-evento">09 dez 2026 · 19h30</span>
+              <span class="quantidade-participantes">Sem participantes</span>
+            </a>
+            <a class="cartao-evento" href="#mulheres-design">
+              <strong>Mulheres no Design: portfólio e entrevistas em UX</strong>
+              <span class="data-evento">13 dez 2026 · 10h</span>
+              <span class="quantidade-participantes">Sem participantes</span>
+            </a>
+          </nav>
+        </aside>
+
+        <!-- Detalhes do evento selecionado -->
+        <section class="painel-participantes" id="react-summit">
+          <span class="categoria-evento">REACT SUMMIT SP</span>
+          <h2>Server Components na prática</h2>
+          <p class="data-completa">04 de dezembro de 2026 · 19h às 22h</p>
+          <h3>4 participantes</h3>
+          <span class="rotulo-nome">NOME</span>
+          <ul class="lista-participantes">
+            <li>Ana N.</li>
+            <li>Bruno R.</li>
+            <li>Mariane S.</li>
+            <li>Gabriel T.</li>
+          </ul>
+          <p class="aviso-privacidade">
+            Sem cadastro, sem telefone e sem e-mail. A lista pública mostra somente o nome de quem
+            escolheu participar.
+          </p>
+        </section>
+      </section>
+    </main>
+  </div>
+</div>

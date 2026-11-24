@@ -1,0 +1,521 @@
+/* ==========================================================
+   MEETUP TECH SP — PAINEL ADMINISTRATIVO / EVENTOS
+   Classes em português, organizadas por área da interface.
+   ========================================================== */
+
+/* 1. Variáveis e configurações gerais */
+:host {
+  display: block;
+  min-width: 320px;
+  min-height: 100vh;
+  --cor-amarela: var(--cor-alerta);
+  --cor-vermelha: var(--cor-erro);
+}
+
+.conteudo-administrativo {
+  padding: 38px var(--espacamento-pagina) 46px;
+}
+
+.pagina-administrativa {
+  width: min(100%, var(--largura-conteudo));
+  margin: 0 auto;
+}
+
+/* 2. Cabeçalho */
+.cabecalho-pagina {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 29px;
+}
+
+.sobretitulo {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--cor-verde);
+  font-family: var(--fonte-monospace);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+}
+
+.cabecalho-pagina h1 {
+  margin: 0;
+  font-size: clamp(34px, 3vw, 40px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+}
+
+.botao-cadastrar {
+  min-height: 44px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
+  border-radius: 11px;
+  background: var(--cor-verde);
+  color: #071004;
+  font-size: 13px;
+  font-weight: 700;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.botao-cadastrar:hover {
+  background: #a0f51b;
+  transform: translateY(-1px);
+}
+.botao-cadastrar span {
+  font-size: 21px;
+  line-height: 1;
+}
+
+/* 3. Indicadores */
+.painel-indicadores {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.cartao-indicador {
+  min-height: 146px;
+  padding: 20px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 15px;
+  background: var(--cor-superficie);
+}
+
+.indicador-cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  color: var(--cor-texto-secundario);
+  font-size: 13px;
+}
+
+.icone-indicador {
+  font-size: 21px;
+  line-height: 1;
+}
+.icone-verde {
+  color: var(--cor-verde);
+}
+.icone-amarela {
+  color: var(--cor-amarela);
+}
+.icone-vermelha {
+  color: var(--cor-vermelha);
+}
+
+.valor-indicador {
+  display: block;
+  margin: 13px 0 12px;
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -1.5px;
+}
+
+.variacao-indicador {
+  font-size: 11px;
+  font-weight: 500;
+}
+.variacao-positiva {
+  color: var(--cor-verde);
+}
+.variacao-alerta {
+  color: var(--cor-amarela);
+}
+.variacao-negativa {
+  color: var(--cor-vermelha);
+}
+
+/* 4. Painel de eventos e barra de ferramentas */
+.painel-eventos {
+  overflow: hidden;
+  border: 1px solid var(--cor-borda);
+  border-radius: 17px;
+  background: var(--cor-superficie);
+}
+
+.barra-ferramentas {
+  min-height: 82px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.abas-eventos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.aba-eventos {
+  min-height: 39px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 14px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 24px;
+  background: #151c16;
+  color: #aab3aa;
+  font-size: 13px;
+  white-space: nowrap;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.aba-eventos:hover {
+  border-color: #557b1d;
+  color: var(--cor-texto);
+}
+.aba-selecionada {
+  border-color: #568d00;
+  background: #17270c;
+  color: var(--cor-verde);
+}
+
+.campo-pesquisa {
+  width: 240px;
+  min-width: 190px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 14px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  background: #171e18;
+  color: var(--cor-texto);
+}
+
+.campo-pesquisa:focus-within {
+  border-color: var(--cor-verde);
+  box-shadow: 0 0 0 2px rgba(139, 229, 0, 0.08);
+}
+
+.campo-pesquisa > span {
+  font-size: 25px;
+  line-height: 1;
+}
+.campo-pesquisa input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--cor-texto);
+  font-size: 13px;
+}
+.campo-pesquisa input::placeholder {
+  color: #69766c;
+}
+
+/* 5. Tabela */
+.tabela-rolagem {
+  width: 100%;
+  overflow-x: auto;
+}
+.tabela-eventos {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  white-space: nowrap;
+}
+.tabela-eventos thead {
+  background: #171e18;
+}
+
+.tabela-eventos th {
+  height: 37px;
+  padding: 0 20px;
+  color: #748077;
+  font-family: var(--fonte-monospace);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.tabela-eventos td {
+  height: 67px;
+  padding: 10px 20px;
+  border-top: 1px solid var(--cor-borda);
+  color: #e1e7df;
+  font-size: 13px;
+}
+
+.tabela-eventos tbody tr {
+  transition: background 0.15s ease;
+}
+.tabela-eventos tbody tr:hover {
+  background: #141b15;
+}
+
+.celula-evento {
+  min-width: 280px;
+  white-space: normal;
+}
+.celula-evento strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--cor-texto);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+.celula-evento span {
+  display: block;
+  color: var(--cor-texto-secundario);
+  font-size: 11px;
+}
+
+.etiqueta-formato {
+  min-height: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 10px;
+  border: 1px solid #4c7d0b;
+  border-radius: 20px;
+  background: #1b2b10;
+  color: var(--cor-verde);
+  font-family: var(--fonte-monospace);
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.etiqueta-status {
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 10px;
+  border-radius: 20px;
+  font-family: var(--fonte-monospace);
+  font-size: 10px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+.etiqueta-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.status-publicado {
+  background: #1d2e10;
+  color: var(--cor-verde);
+}
+.status-rascunho {
+  background: #252b26;
+  color: #a5afa6;
+}
+.status-cancelado {
+  background: #2b1b19;
+  color: #e34c4c;
+}
+.status-encerrado {
+  background: #202621;
+  color: #7d887e;
+}
+
+.linha-inativa td,
+.linha-inativa .celula-evento strong,
+.linha-inativa .celula-evento span {
+  color: #8d978e;
+}
+
+.coluna-acoes {
+  text-align: right;
+}
+.celula-acoes {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+}
+
+.botao-acao {
+  width: 35px;
+  height: 35px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--cor-borda);
+  border-radius: 9px;
+  background: #151c16;
+  color: #a4aea5;
+  font-size: 19px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background 0.2s ease;
+}
+.botao-acao:hover {
+  border-color: #607b46;
+  background: #1b251b;
+  color: var(--cor-texto);
+}
+.botao-cancelar {
+  color: var(--cor-amarela);
+}
+.botao-excluir {
+  color: var(--cor-vermelha);
+}
+
+/* 6. Rodapé da tabela e paginação */
+.rodape-tabela {
+  min-height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 20px;
+  border-top: 1px solid var(--cor-borda);
+  color: var(--cor-texto-secundario);
+  font-size: 11px;
+}
+
+.paginacao {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.paginacao a {
+  width: 33px;
+  height: 33px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: #171e18;
+  color: #aab3aa;
+  font-size: 12px;
+}
+.paginacao a:hover {
+  background: #263322;
+  color: var(--cor-texto);
+}
+.paginacao a:focus-visible {
+  outline: 2px solid var(--cor-verde);
+  outline-offset: 2px;
+}
+.paginacao .pagina-atual {
+  background: var(--cor-verde);
+  color: #071004;
+}
+
+/* 7. Responsividade — telas médias */
+@media (max-width: 1100px) {
+  .conteudo-administrativo {
+    padding: 30px 24px;
+  }
+  .painel-indicadores {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .barra-ferramentas {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .campo-pesquisa {
+    width: 100%;
+  }
+}
+
+/* 8. Responsividade — celulares */
+@media (max-width: 650px) {
+  .conteudo-administrativo {
+    padding: 25px 15px;
+  }
+  .cabecalho-pagina {
+    align-items: flex-start;
+  }
+  .cabecalho-pagina h1 {
+    font-size: 34px;
+  }
+  .botao-cadastrar {
+    min-height: 40px;
+    padding: 0 12px;
+    font-size: 11px;
+  }
+  .painel-indicadores {
+    gap: 10px;
+  }
+  .cartao-indicador {
+    min-height: 128px;
+    padding: 14px;
+  }
+  .indicador-cabecalho {
+    font-size: 11px;
+  }
+  .valor-indicador {
+    font-size: 32px;
+  }
+  .variacao-indicador {
+    font-size: 10px;
+  }
+  .barra-ferramentas {
+    padding: 14px;
+  }
+  .abas-eventos {
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 5px;
+  }
+  .aba-eventos {
+    min-height: 35px;
+    padding: 0 11px;
+    font-size: 11px;
+  }
+  .tabela-eventos {
+    min-width: 980px;
+  }
+  .rodape-tabela {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .paginacao {
+    align-self: flex-end;
+  }
+}
+
+/* 9. Responsividade — celulares compactos */
+@media (max-width: 390px) {
+  .cabecalho-pagina {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .botao-cadastrar {
+    align-self: flex-start;
+  }
+  .painel-indicadores {
+    grid-template-columns: 1fr 1fr;
+  }
+  .cartao-indicador {
+    padding: 12px;
+  }
+  .indicador-cabecalho {
+    align-items: flex-start;
+  }
+  .indicador-cabecalho span {
+    max-width: 120px;
+  }
+}
