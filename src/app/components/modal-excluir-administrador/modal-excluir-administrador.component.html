@@ -1,0 +1,28 @@
+<!-- Modal · Excluir administrador (seletor: app-modal-excluir-administrador) -->
+<div class="modal-fundo" (click)="fecharModal()">
+  <div
+    class="modal"
+    role="alertdialog"
+    aria-modal="true"
+    aria-labelledby="titulo-excluir"
+    aria-describedby="aviso-excluir"
+    (click)="$event.stopPropagation()">
+
+    <div class="apresentacao">
+      <h2 id="titulo-excluir">Excluir administrador</h2>
+      <p>Tem certeza de que deseja remover o acesso desta pessoa?</p>
+    </div>
+
+    <div class="selecionado">
+      <p class="selecionado-nome">{{ administrador()?.nome }}</p>
+      <p class="selecionado-email">{{ administrador()?.email }}</p>
+    </div>
+
+    <p id="aviso-excluir" class="aviso">Esta pessoa perderá o acesso ao painel. Os eventos que ela cadastrou serão mantidos.</p>
+
+    <div class="acoes">
+      <button type="button" class="btn btn-secundario" (click)="fecharModal()">Cancelar</button>
+      <button type="button" class="btn btn-perigo" (click)="confirmarExclusao()">Excluir administrador</button>
+    </div>
+  </div>
+</div>

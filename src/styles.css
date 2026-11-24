@@ -1,7 +1,9 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Montserrat:wght@700;800&display=swap');
+
 :root {
   font-family: Arial, Helvetica, sans-serif;
-
+  /*cnfigurações */
   --cor-fundo: #090e0a;
   --cor-cartao: #111813;
   --cor-campo: #1b231d;
@@ -9,6 +11,27 @@
   --cor-destaque: #91e600;
   --cor-texto: #f5f7f2;
   --cor-texto-secundario: #929c91;
+
+  --color-bg: #0a0d0a;
+  --color-surface: #111511;
+  --color-surface2: #171c17;
+  --color-surface3: #1f261f;
+  --color-border: #263026;
+  --color-text: #f2f5ef;
+  --color-muted: #9aa59a;
+  --color-subtle: #66726a;
+  --color-lime: #8de31b;
+  --color-limesoft: #1a2810;
+  --color-onlime: #0a0d0a;
+  --color-danger: #ff5c5c;
+  --color-danger-border: rgba(255, 92, 92, 0.6);
+  --color-overlay: rgba(10, 13, 10, 0.72);
+  --font-titulo: 'Montserrat', sans-serif;
+  --font-sistema: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius-campo: 10px;
+  --radius-card: 12px;
+  --radius-modal: 16px;
 }
 
 * {
@@ -20,4 +43,156 @@ body {
   min-height: 100vh;
   background-color: var(--cor-fundo);
   color: var(--cor-texto);
+}
+
+.painel *,
+.painel *::before,
+.painel *::after {
+  box-sizing: border-box;
+}
+
+.painel h1,
+.painel h2,
+.painel h3,
+.painel p {
+  margin: 0;
+}
+
+.painel button,
+.painel input {
+  font: inherit;
+  color: inherit;
+}
+
+.painel button {
+  cursor: pointer;
+}
+
+.painel img {
+  display: block;
+}
+
+.painel a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.painel :focus-visible {
+  outline: 2px solid var(--color-lime);
+  outline-offset: 2px;
+}
+
+body:has(.painel .modal-fundo) {
+  overflow: hidden;
+}
+
+.painel .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-campo);
+  font-family: var(--font-sistema);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  white-space: nowrap;
+  transition: filter 0.15s ease, background-color 0.15s ease;
+}
+
+.painel .btn img,
+.painel .campo-caixa img {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.painel .btn-primario {
+  background: var(--color-lime);
+  color: var(--color-onlime);
+}
+
+.painel .btn-primario:hover {
+  filter: brightness(1.08);
+}
+
+.painel .btn-secundario {
+  background: var(--color-surface3);
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.painel .btn-secundario:hover {
+  background: #263026;
+}
+
+.painel .btn-perigo {
+  background: transparent;
+  border-color: var(--color-danger-border);
+  color: var(--color-danger);
+}
+
+.painel .btn-perigo:hover {
+  background: rgba(255, 92, 92, 0.08);
+}
+
+.painel .btn-pequeno {
+  padding: 8px 14px;
+}
+
+.painel .btn-pequeno img {
+  width: 16px;
+  height: 16px;
+}
+
+.painel .campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.painel .campo-rotulo {
+  font-family: var(--font-sistema);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text);
+}
+
+.painel .campo-caixa {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--color-surface2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-campo);
+  transition: border-color 0.15s ease;
+}
+
+.painel .campo-caixa:focus-within {
+  border-color: var(--color-lime);
+}
+
+.painel .campo-caixa input {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-family: var(--font-sistema);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-text);
+}
+
+.painel .campo-caixa input::placeholder {
+  color: var(--color-subtle);
+  opacity: 1;
 }

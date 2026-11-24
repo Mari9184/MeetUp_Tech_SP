@@ -1,0 +1,313 @@
+:host {
+  display: block;
+}
+
+/* ---------- Estrutura: menu lateral + conteúdo ---------- */
+.painel {
+  display: grid;
+  grid-template-columns: 264px minmax(0, 1fr);
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--color-bg);
+}
+
+.principal {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+  padding: 32px 40px 40px;
+}
+
+/* ---------- Cabeçalho ---------- */
+.cabecalho {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.titulo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.sobretitulo {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.66px;
+  color: var(--color-lime);
+}
+
+h1 {
+  font-family: var(--font-titulo);
+  font-weight: 800;
+  font-size: 34px;
+  line-height: 42px;
+  letter-spacing: -0.4px;
+  color: var(--color-text);
+}
+
+.descricao {
+  font-family: var(--font-sistema);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-muted);
+}
+
+/* ---------- Lista de administradores ---------- */
+.lista {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.lista-topo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px;
+}
+
+.lista-total {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-titulo);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--color-text);
+}
+
+.busca {
+  width: 320px;
+  flex-shrink: 0;
+}
+
+/* Remove o "x" nativo do campo de busca para manter o visual do Figma */
+.busca input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+/* ---------- Tabela ---------- */
+.tabela-cabecalho,
+.tabela-linha {
+  display: grid;
+  grid-template-columns: 230fr 310fr 150fr 290fr;
+  gap: 20px;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.tabela-cabecalho {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: var(--color-surface2);
+  font-family: var(--font-sistema);
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+  color: var(--color-muted);
+}
+
+.tabela-linha {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.celula {
+  min-width: 0;
+  font-family: var(--font-sistema);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--color-muted);
+  overflow-wrap: anywhere;
+}
+
+.celula-nome {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.celula-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.sua-conta {
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--color-muted);
+}
+
+.tabela-vazia {
+  padding: 20px;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--color-muted);
+}
+
+/* ---------- Orientação de segurança ---------- */
+.orientacao {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.orientacao h3 {
+  font-family: var(--font-titulo);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--color-text);
+}
+
+.orientacao p {
+  font-family: var(--font-sistema);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--color-muted);
+}
+
+/* Tamanhos locais do conteúdo (não alteram o menu lateral). */
+.painel .btn {
+  gap: 6px;
+  padding: 10px 16px;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.painel .btn img {
+  width: 16px;
+  height: 16px;
+}
+
+.painel .btn-pequeno {
+  padding: 7px 12px;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.painel .btn-pequeno img {
+  width: 14px;
+  height: 14px;
+}
+
+.painel .campo {
+  gap: 6px;
+}
+
+.painel .campo-rotulo {
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.painel .campo-caixa {
+  gap: 8px;
+  padding: 9px 12px;
+}
+
+.painel .campo-caixa img {
+  width: 16px;
+  height: 16px;
+}
+
+.painel .campo-caixa input {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* =========================================================
+   Responsivo
+   ========================================================= */
+
+/* Tablet e celular: o menu vira uma barra no topo */
+@media (max-width: 1023px) {
+  .painel {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+  }
+
+  .principal {
+    padding: 32px 24px 48px;
+  }
+}
+
+/* Tabela vira uma lista de cartões */
+@media (max-width: 900px) {
+  .lista-topo {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .busca {
+    width: 100%;
+  }
+
+  .tabela-cabecalho {
+    display: none;
+  }
+
+  .tabela-linha {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 20px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .celula-nome {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .celula[data-rotulo]::before {
+    content: attr(data-rotulo) ': ';
+    color: var(--color-subtle);
+  }
+
+  .celula-acoes {
+    margin-top: 10px;
+  }
+}
+
+/* Celular */
+@media (max-width: 600px) {
+  .principal {
+    gap: 24px;
+    padding: 24px 16px 40px;
+  }
+
+  .cabecalho {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .cabecalho .btn {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .celula-acoes .btn {
+    flex: 1;
+  }
+}
