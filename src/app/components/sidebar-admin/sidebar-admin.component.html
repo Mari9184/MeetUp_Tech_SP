@@ -1,0 +1,60 @@
+<!-- Menu lateral do painel administrativo (seletor: app-sidebar-admin) -->
+
+<!-- Controle do menu no celular (funciona só com CSS, sem TypeScript) -->
+<input #controleMenu type="checkbox" id="menu-admin-toggle" class="menu-toggle" aria-hidden="true" />
+
+<!-- Barra superior: aparece apenas em telas menores que 1024px -->
+<header class="topo-mobile">
+  <div class="logo" role="img" aria-label="Meetup Tech SP"><span>MEETUP</span><strong>TECH SP</strong></div>
+  <label for="menu-admin-toggle" class="botao-menu" aria-label="Abrir menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+</header>
+
+<!-- Fundo escuro atrás do menu aberto no celular (clicar fecha o menu) -->
+<label for="menu-admin-toggle" class="menu-fundo" aria-hidden="true"></label>
+
+<aside class="sidebar" aria-label="Menu do painel administrativo">
+  <div class="sidebar-topo">
+    <div class="logo" role="img" aria-label="Meetup Tech SP"><span>MEETUP</span><strong>TECH SP</strong></div>
+    <label for="menu-admin-toggle" class="botao-fechar" aria-label="Fechar menu"></label>
+  </div>
+
+  <p class="menu-titulo">MENU</p>
+
+  <nav class="menu" (click)="fecharMenu()">
+    <a class="menu-item" routerLink="/admin/eventos" routerLinkActive="ativo">
+      <span class="icone icone-calendar" aria-hidden="true"></span>
+      Eventos
+    </a>
+    <a class="menu-item" routerLink="/admin/eventos/novo" routerLinkActive="ativo">
+      <span class="icone icone-plus" aria-hidden="true"></span>
+      Cadastrar evento
+    </a>
+    <a class="menu-item" routerLink="/admin/ir-em-grupo" routerLinkActive="ativo">
+      <span class="icone icone-users" aria-hidden="true"></span>
+      Ir em grupo
+    </a>
+    <a class="menu-item" routerLink="/admin/administradores" routerLinkActive="ativo">
+      <span class="icone icone-shield" aria-hidden="true"></span>
+      Administradores
+    </a>
+    <a class="menu-item" routerLink="/">
+      <span class="icone icone-eye" aria-hidden="true"></span>
+      Ver site público
+    </a>
+  </nav>
+
+  <div class="usuario">
+    <div class="avatar">{{ iniciais() }}</div>
+    <div class="usuario-texto">
+      <p class="usuario-nome">{{ nomeUsuario() }}</p>
+      <p class="usuario-perfil">{{ perfilUsuario() }}</p>
+    </div>
+    <button type="button" class="botao-sair" aria-label="Sair do painel" (click)="sairDoPainel()">
+      <img src="/icons/logout.svg" alt="" width="18" height="18" />
+    </button>
+  </div>
+</aside>

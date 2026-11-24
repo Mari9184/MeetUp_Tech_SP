@@ -12,6 +12,10 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
+## Painel de administradores
+
+Abra `http://localhost:4200/admin/administradores` para acessar o gerenciamento de administradores. O cadastro, a edição e a exclusão funcionam no navegador, mas os dados ficam apenas em memória e são perdidos ao recarregar a página; conecte um backend antes de usar este painel em produção.
+
 ## Code scaffolding
 
 Angular CLI includes powerful code scaffolding tools. To generate a new component, run:

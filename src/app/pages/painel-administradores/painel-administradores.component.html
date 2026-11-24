@@ -1,0 +1,97 @@
+<!-- 07 · Painel admin — Administradores (seletor: app-painel-administradores) -->
+<div class="painel">
+  <app-sidebar-admin />
+
+  <main class="principal">
+    <!-- Cabeçalho -->
+    <header class="cabecalho">
+      <div class="titulo">
+        <p class="sobretitulo">PAINEL ADMINISTRATIVO</p>
+        <h1>Administradores</h1>
+      </div>
+      <button type="button" class="btn btn-primario" (click)="abrirCadastro()">
+        <img src="/icons/user-plus.svg" alt="" width="18" height="18" />
+        Novo administrador
+      </button>
+    </header>
+
+    <p class="descricao">Gerencie quem pode administrar os eventos e as listas de participantes.</p>
+
+    <!-- Lista de administradores -->
+    <section class="lista" aria-labelledby="total-administradores">
+      <div class="lista-topo">
+        <h2 id="total-administradores" class="lista-total">{{ totalAdministradores() }} administradores</h2>
+
+        <label class="campo busca">
+          <span class="campo-rotulo">Buscar administrador</span>
+          <span class="campo-caixa">
+            <img src="/icons/search.svg" alt="" width="18" height="18" />
+            <input type="search" placeholder="Nome ou e-mail..." (input)="buscar($any($event.target).value)" />
+          </span>
+        </label>
+      </div>
+
+      <div class="tabela" role="table" aria-label="Administradores cadastrados">
+        <div class="tabela-cabecalho" role="row">
+          <span role="columnheader">NOME</span>
+          <span role="columnheader">E-MAIL</span>
+          <span role="columnheader">PERFIL</span>
+          <span role="columnheader">AÇÕES</span>
+        </div>
+
+        @for (admin of administradores(); track admin.id) {
+          <div class="tabela-linha" role="row">
+            <span class="celula celula-nome" role="cell">{{ admin.nome }}</span>
+            <span class="celula celula-email" role="cell" data-rotulo="E-mail">{{ admin.email }}</span>
+            <span class="celula" role="cell" data-rotulo="Perfil">{{ admin.perfil }}</span>
+            <span class="celula celula-acoes" role="cell">
+              @if (admin.perfil === 'Fundador') {
+                <span class="sua-conta">Sua conta</span>
+              } @else {
+                <button type="button" class="btn btn-secundario btn-pequeno" (click)="abrirEdicao(admin)">
+                  <img src="/icons/pencil.svg" alt="" width="16" height="16" />
+                  Editar
+                </button>
+                <button type="button" class="btn btn-perigo btn-pequeno" (click)="abrirExclusao(admin)">
+                  <img src="/icons/trash.svg" alt="" width="16" height="16" />
+                  Excluir
+                </button>
+              }
+            </span>
+          </div>
+        } @empty {
+          <p class="tabela-vazia">Nenhum administrador encontrado.</p>
+        }
+      </div>
+    </section>
+
+    <!-- Orientação de segurança -->
+    <section class="orientacao">
+      <h3>Acesso administrativo</h3>
+      <p>O cadastro de participantes continua sem conta. Esta área é exclusiva para gerenciar o acesso de administradores.</p>
+    </section>
+  </main>
+
+  <!-- Modais: aparecem centralizados por cima da página -->
+  @switch (modalAberto()) {
+    @case ('cadastrar') {
+      <app-modal-cadastrar-administrador
+        [mensagemErro]="mensagemErro()"
+        (fechar)="fecharModal()"
+        (cadastrar)="cadastrarAdministrador($event)" />
+    }
+    @case ('editar') {
+      <app-modal-editar-administrador
+        [administrador]="administradorSelecionado()"
+        [mensagemErro]="mensagemErro()"
+        (fechar)="fecharModal()"
+        (salvar)="salvarAdministrador($event)" />
+    }
+    @case ('excluir') {
+      <app-modal-excluir-administrador
+        [administrador]="administradorSelecionado()"
+        (fechar)="fecharModal()"
+        (confirmar)="excluirAdministrador()" />
+    }
+  }
+</div>
