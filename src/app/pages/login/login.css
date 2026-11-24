@@ -317,6 +317,23 @@
   transform: translateY(0);
 }
 
+.botao-entrar:disabled {
+  cursor: wait;
+  opacity: 0.72;
+  transform: none;
+}
+
+.mensagem-erro {
+  margin: -4px 0 0;
+  padding: 9px 11px;
+  border: 1px solid rgba(255, 105, 105, 0.35);
+  border-radius: 9px;
+  background: rgba(255, 105, 105, 0.08);
+  color: #ffabab;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
 /* 11. Aviso de segurança */
 .aviso-seguranca {
   display: flex;

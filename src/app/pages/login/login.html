@@ -47,7 +47,7 @@
     </header>
 
     <!-- Campos de acesso -->
-    <form class="formulario-login">
+    <form class="formulario-login" (ngSubmit)="entrar()">
       <div class="campo-formulario">
         <label for="email">E-mail</label>
         <div class="campo-com-icone">
@@ -73,6 +73,7 @@
             id="email"
             name="email"
             type="email"
+            [(ngModel)]="email"
             placeholder="Joana@meetuptechsp.com.br"
             autocomplete="username"
             required
@@ -104,6 +105,7 @@
             id="senha"
             name="senha"
             type="password"
+            [(ngModel)]="senha"
             placeholder="••••••••••"
             autocomplete="current-password"
             required
@@ -119,7 +121,11 @@
         <a class="link-recuperar" href="#recuperar-senha">Esqueci minha senha</a>
       </div>
 
-      <button class="botao-entrar" type="button" routerLink="/eventos">
+      @if (erro()) {
+        <p class="mensagem-erro" role="alert">{{ erro() }}</p>
+      }
+
+      <button class="botao-entrar" type="submit" [disabled]="carregando()">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path
             d="M10 17l5-5-5-5M15 12H3"
@@ -135,7 +141,7 @@
             stroke-linecap="round"
           />
         </svg>
-        Entrar no painel
+        {{ carregando() ? 'Entrando...' : 'Entrar no painel' }}
       </button>
     </form>
 
