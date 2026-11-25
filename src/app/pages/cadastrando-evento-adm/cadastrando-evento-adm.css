@@ -204,6 +204,7 @@
 }
 
 .contador-caracteres {
+  display: block;
   margin: 6px 0 0;
   color: var(--cor-suave);
   font-size: 10px;
@@ -221,7 +222,9 @@
 .campo-com-icone > span {
   flex: 0 0 auto;
   color: var(--cor-suave);
-  font-size: 15px;
+  font-family: var(--fonte-mono);
+  font-size: 14px;
+  line-height: 1;
 }
 
 .campo-com-icone input,
@@ -249,8 +252,13 @@
 .grade-dupla {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+
 .grade-tripla {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grade-campos + .contador-caracteres {
+  margin: -4px 0 14px;
 }
 
 /* 6. Opções de formato */
@@ -385,18 +393,22 @@
   color: var(--cor-laranja);
   background: rgb(245 166 35 / 10%);
 }
+
 .selo-azul {
   color: var(--cor-azul);
   background: rgb(41 199 223 / 10%);
 }
+
 .selo-roxo {
   color: var(--cor-roxo);
   background: rgb(167 123 234 / 10%);
 }
+
 .selo-rosa {
   color: var(--cor-rosa);
   background: rgb(237 104 167 / 10%);
 }
+
 .selo-cinza {
   color: #849087;
   background: rgb(132 144 135 / 10%);
@@ -622,6 +634,7 @@
   .cartao-formulario {
     padding: 20px 17px;
   }
+
   .grade-tripla {
     gap: 8px;
   }
@@ -651,12 +664,12 @@
   .estrutura-cadastro {
     grid-template-columns: 1fr;
   }
+
   .barra-lateral {
     grid-row: 1;
   }
-  .cartao-previa {
-    max-width: 430px;
-  }
+
+  .cartao-previa,
   .cartao-completude,
   .cartao-cancelamento {
     max-width: 430px;
@@ -668,30 +681,38 @@
   .cabecalho-conteudo h1 {
     font-size: 29px;
   }
+
   .grade-dupla,
   .grade-tripla {
     grid-template-columns: 1fr;
   }
+
   .cartao-formulario {
     padding: 19px 15px;
   }
+
   .acoes-cabecalho {
     gap: 8px;
   }
+
   .acoes-cabecalho .botao {
     padding: 0 10px;
     font-size: 11px;
   }
+
   .opcoes-formato {
     width: 100%;
   }
+
   .opcao-formato {
     flex: 1;
   }
+
   .opcao-formato span {
     justify-content: center;
     padding: 0 7px;
   }
+
   .botoes-previa {
     grid-template-columns: 1fr;
   }

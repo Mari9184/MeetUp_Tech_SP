@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "meeduptechsp-76298"
-  }
+    "default": "meetuptechsp-76298"
+  },
+  "targets": {},
+  "etags": {}
 }

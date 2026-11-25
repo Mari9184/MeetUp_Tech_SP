@@ -16,7 +16,7 @@
   grid-template-columns: minmax(0, 1fr) 376px;
   align-items: center;
   gap: clamp(48px, 5.7vw, 88px);
-  padding: 70px clamp(36px, 6.9vw, 100px) 70px clamp(36px, 6.1vw, 100px);
+  padding: 52px clamp(36px, 6.9vw, 100px) 52px clamp(36px, 6.1vw, 100px);
   overflow: hidden;
   position: relative;
   isolation: isolate;
@@ -34,10 +34,11 @@
 
 /* 3. Área de apresentação */
 .painel-apresentacao {
-  min-height: calc(100vh - 140px);
+  min-height: calc(100vh - 104px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 28px;
   position: relative;
   padding: 0;
 }
@@ -51,8 +52,8 @@
 
 .logo-marca {
   display: block;
-  width: var(--tamanho-logo-cabecalho);
-  height: var(--tamanho-logo-cabecalho);
+  width: clamp(130px, 20vh, 220px);
+  height: clamp(130px, 20vh, 220px);
   object-fit: cover;
   border-radius: 50%;
 }
@@ -74,7 +75,7 @@
 
 .conteudo-apresentacao h1 {
   max-width: 560px;
-  margin: 16px 0;
+  margin: 14px 0;
   color: var(--cor-texto);
   font-size: clamp(32px, 2.8vw, 36px);
   font-weight: 800;
@@ -366,16 +367,17 @@
     margin-inline: auto;
     grid-template-columns: minmax(0, 1fr) minmax(0, min(752px, 27.55vw));
     gap: clamp(88px, 5.7vw, 136px);
-    padding: clamp(100px, 5.13vw, 140px) clamp(100px, 6.9vw, 170px);
+    padding: clamp(80px, 4.5vw, 120px) clamp(100px, 6.9vw, 170px);
   }
 
   .painel-apresentacao {
-    min-height: calc(100vh - 280px);
+    min-height: calc(100vh - clamp(160px, 9vw, 240px));
+    gap: clamp(32px, 1.8vw, 48px);
   }
 
   .logo-marca {
-    width: clamp(80px, 4.1vw, 112px);
-    height: clamp(80px, 4.1vw, 112px);
+    width: clamp(180px, 20vh, 320px);
+    height: clamp(180px, 20vh, 320px);
   }
 
   .conteudo-apresentacao {
@@ -526,16 +528,16 @@
   }
 }
 
-/* 12. Responsividade — telas médias */
+/* 13. Responsividade — telas médias */
 @media (max-width: 1050px) {
   .pagina-acesso {
     grid-template-columns: minmax(0, 1fr) 360px;
     gap: 36px;
-    padding: 56px 5%;
+    padding: 48px 5%;
   }
 
   .painel-apresentacao {
-    min-height: calc(100vh - 112px);
+    min-height: calc(100vh - 96px);
   }
 
   .conteudo-apresentacao h1 {
@@ -547,13 +549,13 @@
   }
 }
 
-/* 13. Responsividade — tablets e celulares */
+/* 14. Responsividade — tablets e celulares */
 @media (max-width: 900px) {
   .pagina-acesso {
     min-height: 100vh;
     grid-template-columns: 1fr;
-    gap: 42px;
-    padding: 30px 22px 42px;
+    gap: 36px;
+    padding: 28px 22px 42px;
     overflow: visible;
   }
 
@@ -565,12 +567,12 @@
 
   .painel-apresentacao {
     min-height: 0;
-    gap: 48px;
+    gap: 32px;
   }
 
   .logo-marca {
-    width: var(--tamanho-logo-cabecalho);
-    height: var(--tamanho-logo-cabecalho);
+    width: clamp(100px, 20vh, 160px);
+    height: clamp(100px, 20vh, 160px);
   }
 
   .conteudo-apresentacao {
@@ -598,11 +600,11 @@
   }
 }
 
-/* 14. Responsividade — celulares compactos */
+/* 15. Responsividade — celulares compactos */
 @media (max-width: 420px) {
   .pagina-acesso {
     padding: 24px 16px 32px;
-    gap: 38px;
+    gap: 32px;
   }
 
   .conteudo-apresentacao h1 {

@@ -121,7 +121,7 @@
           <!-- Seção 2: data, horário e local -->
           <section class="cartao-formulario">
             <header class="titulo-secao">
-              <h2>2. Data, horário e local</h2>
+              <h2>{{ isOnline() ? '2. Data, horário e formato' : '2. Data, horário e local' }}</h2>
             </header>
 
             <div class="grade-campos grade-tripla">
@@ -180,7 +180,7 @@
                     name="formato"
                     value="presencial"
                     [checked]="formato() === 'presencial'"
-                    (change)="formato.set('presencial')"
+                    (change)="selecionarFormato('presencial')"
                   />
                   <span>♧ &nbsp; Presencial</span>
                 </label>
@@ -190,7 +190,7 @@
                     name="formato"
                     value="online"
                     [checked]="formato() === 'online'"
-                    (change)="formato.set('online')"
+                    (change)="selecionarFormato('online')"
                   />
                   <span>▣ &nbsp; Online</span>
                 </label>
@@ -200,42 +200,87 @@
                     name="formato"
                     value="hibrido"
                     [checked]="formato() === 'hibrido'"
-                    (change)="formato.set('hibrido')"
+                    (change)="selecionarFormato('hibrido')"
                   />
                   <span>♧ &nbsp; Híbrido</span>
                 </label>
               </div>
             </fieldset>
 
-            <div class="grade-campos grade-dupla">
-              <div class="grupo-campo">
-                <label for="local-evento">Local / endereço *</label>
-                <div class="campo-com-icone">
-                  <span aria-hidden="true">♧</span>
-                  <input
-                    id="local-evento"
-                    name="local"
-                    type="text"
-                    required
-                    [value]="local()"
-                    (input)="local.set($any($event.target).value)"
-                  />
+            @if (!isOnline()) {
+              <div class="grade-campos grade-dupla">
+                <div class="grupo-campo">
+                  <label for="cep-evento">CEP</label>
+                  <div class="campo-com-icone">
+                    <span aria-hidden="true">▦</span>
+                    <input
+                      id="cep-evento"
+                      name="cep"
+                      type="text"
+                      inputmode="numeric"
+                      placeholder="04710-090"
+                      [value]="cep()"
+                      (input)="atualizarCep($any($event.target).value)"
+                      (blur)="buscarCep()"
+                    />
+                  </div>
+                </div>
+                <div class="grupo-campo">
+                  <label for="numero-evento">Número</label>
+                  <div class="campo-com-icone">
+                    <span aria-hidden="true">#</span>
+                    <input
+                      id="numero-evento"
+                      name="numero"
+                      type="text"
+                      placeholder="455"
+                      [value]="numeroEndereco()"
+                      (input)="atualizarNumeroEndereco($any($event.target).value)"
+                      (blur)="buscarCep()"
+                    />
+                  </div>
                 </div>
               </div>
-              <div class="grupo-campo">
-                <label for="estacao-proxima">Estação por perto</label>
-                <div class="campo-com-icone">
-                  <span aria-hidden="true">▦</span>
-                  <input
-                    id="estacao-proxima"
-                    name="estacao"
-                    type="text"
-                    [value]="estacao()"
-                    (input)="estacao.set($any($event.target).value)"
-                  />
+
+              @if (buscandoCep()) {
+                <small class="contador-caracteres">Consultando endereço pelo CEP...</small>
+              } @else if (buscandoEstacao()) {
+                <small class="contador-caracteres">Localizando estação mais próxima...</small>
+              }
+              @if (avisoCep()) {
+                <small class="contador-caracteres">{{ avisoCep() }}</small>
+              }
+
+              <div class="grade-campos grade-dupla">
+                <div class="grupo-campo">
+                  <label for="local-evento">Local / endereço *</label>
+                  <div class="campo-com-icone">
+                    <span aria-hidden="true">♧</span>
+                    <input
+                      id="local-evento"
+                      name="local"
+                      type="text"
+                      required
+                      [value]="local()"
+                      (input)="local.set($any($event.target).value)"
+                    />
+                  </div>
+                </div>
+                <div class="grupo-campo">
+                  <label for="estacao-proxima">Estação por perto</label>
+                  <div class="campo-com-icone">
+                    <span aria-hidden="true">▦</span>
+                    <input
+                      id="estacao-proxima"
+                      name="estacao"
+                      type="text"
+                      [value]="estacao()"
+                      (input)="estacao.set($any($event.target).value)"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
+            }
           </section>
 
           <!-- Seção 3: público e inscrição -->
@@ -335,9 +380,13 @@
               <h2>{{ titulo() || 'Título do evento' }}</h2>
               <ul class="detalhes-evento">
                 <li>◷ &nbsp; {{ dataDetalhePrevia() }}</li>
-                <li>♧ &nbsp; {{ local() || 'Local a definir' }}</li>
-                @if (estacao().trim()) {
-                  <li>▦ &nbsp; {{ estacao() }}</li>
+                @if (isOnline()) {
+                  <li>▣ &nbsp; Evento online</li>
+                } @else {
+                  <li>♧ &nbsp; {{ local() || 'Local a definir' }}</li>
+                  @if (estacao().trim()) {
+                    <li>▦ &nbsp; {{ estacao() }}</li>
+                  }
                 }
                 <li>▦ &nbsp; Organização: {{ empresa() || 'Comunidade' }}</li>
               </ul>
