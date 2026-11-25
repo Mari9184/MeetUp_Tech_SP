@@ -1,22 +1,29 @@
 <!-- Fundo e conteúdo do diálogo de cadastro -->
-<div class="fundo-modal">
+<div class="fundo-modal" (click)="cancelar.emit()">
   <section
     class="modal-administrador"
     role="dialog"
     aria-modal="true"
     aria-labelledby="titulo-novo-administrador"
     aria-describedby="descricao-novo-administrador"
+    (click)="$event.stopPropagation()"
   >
     <!-- Título e objetivo do formulário -->
     <header>
-      <h2 id="titulo-novo-administrador">Novo administrador</h2>
+      <h2 id="titulo-novo-administrador">
+        {{ modoEdicao() ? 'Editar administrador' : 'Novo administrador' }}
+      </h2>
       <p class="descricao-modal" id="descricao-novo-administrador">
-        Cadastre uma pessoa para gerenciar os eventos e as listas de participantes.
+        {{
+          modoEdicao()
+            ? 'Atualize os dados de acesso do administrador.'
+            : 'Cadastre uma pessoa para gerenciar os eventos e as listas de participantes.'
+        }}
       </p>
     </header>
 
     <!-- Campos de identificação e credenciais -->
-    <form>
+    <form (submit)="aoEnviar($event)">
       <div class="campo-formulario">
         <label for="nome-administrador">Nome *</label>
         <input
@@ -28,6 +35,8 @@
           required
           pattern=".*\S.*"
           autofocus
+          [value]="nome()"
+          (input)="nome.set($any($event.target).value)"
         />
       </div>
 
@@ -59,40 +68,51 @@
             placeholder="nome@exemplo.com"
             autocomplete="email"
             required
+            [value]="email()"
+            (input)="email.set($any($event.target).value)"
           />
         </div>
       </div>
 
-      <div class="campo-formulario">
-        <label for="senha-administrador">Senha inicial *</label>
-        <div class="campo-com-icone">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <rect
-              x="4"
-              y="10"
-              width="16"
-              height="11"
-              rx="2"
-              stroke="currentColor"
-              stroke-width="1.7"
+      @if (!modoEdicao()) {
+        <div class="campo-formulario">
+          <label for="senha-administrador">Senha inicial *</label>
+          <div class="campo-com-icone">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect
+                x="4"
+                y="10"
+                width="16"
+                height="11"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.7"
+              />
+              <path
+                d="M8 10V7a4 4 0 0 1 8 0v3"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+              />
+            </svg>
+            <input
+              id="senha-administrador"
+              name="senhaInicial"
+              type="password"
+              placeholder="Defina uma senha de acesso"
+              autocomplete="new-password"
+              required
+              minlength="6"
+              [value]="senha()"
+              (input)="senha.set($any($event.target).value)"
             />
-            <path
-              d="M8 10V7a4 4 0 0 1 8 0v3"
-              stroke="currentColor"
-              stroke-width="1.7"
-              stroke-linecap="round"
-            />
-          </svg>
-          <input
-            id="senha-administrador"
-            name="senhaInicial"
-            type="password"
-            placeholder="Defina uma senha de acesso"
-            autocomplete="new-password"
-            required
-          />
+          </div>
         </div>
-      </div>
+      }
+
+      @if (erroLocal() || erroServidor()) {
+        <p class="erro-modal" role="alert">{{ erroLocal() || erroServidor() }}</p>
+      }
 
       <p class="aviso-perfil">
         Perfil de acesso: Administrador. Compartilhe as credenciais por um canal seguro.
@@ -100,8 +120,23 @@
 
       <!-- Ações disponíveis no diálogo -->
       <footer class="acoes-modal">
-        <button class="botao-cancelar" type="button">Cancelar</button>
-        <button class="botao-cadastrar" type="button">Cadastrar administrador</button>
+        <button
+          class="botao-cancelar"
+          type="button"
+          [disabled]="salvando()"
+          (click)="cancelar.emit()"
+        >
+          Cancelar
+        </button>
+        <button class="botao-cadastrar" type="submit" [disabled]="salvando()">
+          {{
+            salvando()
+              ? 'Salvando...'
+              : modoEdicao()
+                ? 'Salvar alterações'
+                : 'Cadastrar administrador'
+          }}
+        </button>
       </footer>
     </form>
   </section>

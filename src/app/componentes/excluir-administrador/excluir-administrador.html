@@ -1,34 +1,55 @@
 <!-- Fundo e conteúdo do diálogo de confirmação -->
-<div class="fundo-modal">
+<div class="fundo-modal" (click)="cancelar.emit()">
   <section
     class="modal-administrador"
     role="alertdialog"
     aria-modal="true"
     aria-labelledby="titulo-excluir-administrador"
     aria-describedby="descricao-excluir-administrador aviso-excluir-administrador"
+    (click)="$event.stopPropagation()"
   >
     <!-- Alerta de exclusão -->
     <header>
-      <h2 id="titulo-excluir-administrador">Excluir administrador</h2>
+      <h2 id="titulo-excluir-administrador">{{ titulo() }}</h2>
       <p class="descricao-modal" id="descricao-excluir-administrador">
-        Tem certeza de que deseja remover o acesso desta pessoa?
+        {{ pergunta() }}
       </p>
     </header>
 
     <!-- Dados e consequências da exclusão -->
     <div class="dados-administrador">
-      <p>Nome do administrador</p>
-      <span>nome@exemplo.com</span>
+      <p>{{ nome() || 'Item selecionado' }}</p>
+      @if (email()) {
+        <span>{{ email() }}</span>
+      }
     </div>
 
     <p class="aviso-exclusao" id="aviso-excluir-administrador">
-      Esta pessoa perderá o acesso ao painel. Os eventos que ela cadastrou serão mantidos.
+      {{ aviso() }}
     </p>
+
+    @if (erroServidor()) {
+      <p class="erro-exclusao" role="alert">{{ erroServidor() }}</p>
+    }
 
     <!-- Ações disponíveis no diálogo -->
     <footer class="acoes-modal">
-      <button class="botao-cancelar" type="button">Cancelar</button>
-      <button class="botao-excluir" type="button">Excluir administrador</button>
+      <button
+        class="botao-cancelar"
+        type="button"
+        [disabled]="excluindo()"
+        (click)="cancelar.emit()"
+      >
+        Cancelar
+      </button>
+      <button
+        class="botao-excluir"
+        type="button"
+        [disabled]="excluindo()"
+        (click)="confirmar.emit()"
+      >
+        {{ excluindo() ? textoBotaoExcluindo() : textoBotaoConfirmar() }}
+      </button>
     </footer>
   </section>
 </div>

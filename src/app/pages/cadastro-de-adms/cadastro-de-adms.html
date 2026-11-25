@@ -10,21 +10,34 @@
           <p>Gerencie quem pode administrar os eventos e as listas de participantes.</p>
         </div>
 
-        <button class="botao botao-principal" type="button">
+        <button class="botao botao-principal" type="button" (click)="abrirNovoAdministrador()">
           <span class="icone-adicionar" aria-hidden="true">＋</span>
           Novo administrador
         </button>
       </header>
 
+      @if (erro()) {
+        <p class="mensagem-erro-pagina" role="alert">{{ erro() }}</p>
+      }
+
       <section class="cartao-administradores" aria-labelledby="titulo-administradores">
         <div class="cabecalho-cartao">
-          <h2 id="titulo-administradores">3 administradores</h2>
+          <h2 id="titulo-administradores">
+            {{ administradoresFiltrados().length }}
+            {{ administradoresFiltrados().length === 1 ? 'administrador' : 'administradores' }}
+          </h2>
 
           <div class="campo-busca">
             <label for="buscar-administrador">Buscar administrador</label>
             <div class="entrada-busca">
               <span class="icone-busca" aria-hidden="true">⌕</span>
-              <input type="search" id="buscar-administrador" placeholder="Nome ou e-mail..." />
+              <input
+                type="search"
+                id="buscar-administrador"
+                placeholder="Nome ou e-mail..."
+                [value]="termoBusca()"
+                (input)="atualizarBusca($any($event.target).value)"
+              />
             </div>
           </div>
         </div>
@@ -40,42 +53,47 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="nome-administrador">Gabriel T.</td>
-                <td class="email-administrador">Joana@meetuptech.example</td>
-                <td class="perfil-administrador">Fundador</td>
-                <td class="acoes-administrador">
-                  <span class="texto-conta-propria">Sua conta</span>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="nome-administrador">Mariana Costa</td>
-                <td class="email-administrador">mariana@meetuptech.example</td>
-                <td class="perfil-administrador">Administrador</td>
-                <td class="acoes-administrador">
-                  <button class="botao botao-editar" type="button">
-                    <span aria-hidden="true">♢</span> Editar
-                  </button>
-                  <button class="botao botao-excluir" type="button">
-                    <span aria-hidden="true">♧</span> Excluir
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="nome-administrador">Lucas Almeida</td>
-                <td class="email-administrador">lucas@meetuptech.example</td>
-                <td class="perfil-administrador">Administrador</td>
-                <td class="acoes-administrador">
-                  <button class="botao botao-editar" type="button">
-                    <span aria-hidden="true">♢</span> Editar
-                  </button>
-                  <button class="botao botao-excluir" type="button">
-                    <span aria-hidden="true">♧</span> Excluir
-                  </button>
-                </td>
-              </tr>
+              @if (carregando()) {
+                <tr>
+                  <td colspan="4" class="email-administrador">Carregando administradores...</td>
+                </tr>
+              } @else {
+                @for (adm of administradoresFiltrados(); track adm.chaveLista) {
+                  <tr>
+                    <td class="nome-administrador">{{ adm.nomeCompleto }}</td>
+                    <td class="email-administrador">{{ adm.email }}</td>
+                    <td class="perfil-administrador">{{ adm.perfil }}</td>
+                    <td class="acoes-administrador">
+                      @if (adm.ehContaPropria) {
+                        <span class="texto-conta-propria">Sua conta</span>
+                      } @else {
+                        <button
+                          class="botao botao-editar"
+                          type="button"
+                          [disabled]="!adm.id || excluindoAdmin()"
+                          (click)="abrirEditarAdministrador(adm)"
+                        >
+                          <span aria-hidden="true">♢</span> Editar
+                        </button>
+                        <button
+                          class="botao botao-excluir"
+                          type="button"
+                          [disabled]="!adm.id || excluindoAdmin()"
+                          (click)="solicitarExclusao(adm)"
+                        >
+                          <span aria-hidden="true">♧</span> Excluir
+                        </button>
+                      }
+                    </td>
+                  </tr>
+                } @empty {
+                  <tr>
+                    <td colspan="4" class="email-administrador">
+                      Nenhum administrador encontrado.
+                    </td>
+                  </tr>
+                }
+              }
             </tbody>
           </table>
         </div>
@@ -88,6 +106,28 @@
           acesso de administradores.
         </p>
       </section>
+
+      @if (modalAberto()) {
+        <app-novo-administrador
+          [salvando]="salvandoModal()"
+          [erroServidor]="erroModal()"
+          [modoEdicao]="modoEdicao()"
+          [dadosIniciais]="dadosIniciaisModal()"
+          (cancelar)="fecharModal()"
+          (confirmar)="aoConfirmarModal($event)"
+        />
+      }
+
+      @if (adminParaExcluir(); as alvo) {
+        <app-excluir-administrador
+          [nome]="alvo.nomeCompleto"
+          [email]="alvo.email"
+          [excluindo]="excluindoAdmin()"
+          [erroServidor]="erroExclusaoModal()"
+          (cancelar)="cancelarExclusao()"
+          (confirmar)="confirmarExclusao()"
+        />
+      }
     </main>
   </div>
 </div>

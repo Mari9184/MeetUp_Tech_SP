@@ -1,7 +1,10 @@
 /* ==============================
    Configurações gerais
 ================================= */
-:root {
+:host {
+  display: block;
+  min-width: 320px;
+  min-height: 100vh;
   --cor-fundo: #090e0b;
   --cor-cartao: #111612;
   --cor-cartao-secundario: #171e19;
@@ -12,23 +15,20 @@
   --cor-destaque-hover: #a0f32a;
   --cor-perigo: #ff454b;
   --fonte-principal: Arial, Helvetica, sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  min-height: 100vh;
   background: var(--cor-fundo);
   color: var(--cor-texto);
   font-family: var(--fonte-principal);
 }
 
+:host *,
+:host *::before,
+:host *::after {
+  box-sizing: border-box;
+}
+
 button,
-input {
+input,
+select {
   font: inherit;
 }
 
@@ -67,6 +67,7 @@ input {
 }
 
 .cabecalho-pagina h1 {
+  margin: 0;
   font-size: clamp(34px, 4vw, 42px);
   line-height: 1.12;
   font-weight: 750;
@@ -74,7 +75,7 @@ input {
 }
 
 .cabecalho-pagina p {
-  margin-top: 22px;
+  margin: 22px 0 0;
   color: var(--cor-texto-secundario);
   font-size: 16px;
   line-height: 1.5;
@@ -99,8 +100,16 @@ input {
   transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
 }
 
+.botao:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .botao:focus-visible,
-.entrada-busca input:focus-visible {
+.entrada-busca input:focus-visible,
+.campo-modal input:focus-visible,
+.campo-modal select:focus-visible {
   outline: 2px solid var(--cor-destaque);
   outline-offset: 3px;
 }
@@ -114,7 +123,7 @@ input {
   font-size: 14px;
 }
 
-.botao-principal:hover {
+.botao-principal:hover:not(:disabled) {
   background: var(--cor-destaque-hover);
   transform: translateY(-1px);
 }
@@ -123,6 +132,12 @@ input {
   font-size: 22px;
   line-height: 1;
   font-weight: 400;
+}
+
+.mensagem-erro-pagina {
+  margin: 0 0 18px;
+  color: var(--cor-perigo);
+  font-size: 14px;
 }
 
 /* ==============================
@@ -145,6 +160,7 @@ input {
 }
 
 .cabecalho-cartao h2 {
+  margin: 0;
   font-size: 21px;
   font-weight: 700;
 }
@@ -172,6 +188,10 @@ input {
   background: var(--cor-cartao-secundario);
 }
 
+.entrada-busca:focus-within {
+  border-color: var(--cor-destaque);
+}
+
 .icone-busca {
   color: var(--cor-texto);
   font-size: 25px;
@@ -182,6 +202,8 @@ input {
 .entrada-busca input {
   width: 100%;
   min-width: 0;
+  margin: 0;
+  padding: 0;
   border: 0;
   outline: 0;
   background: transparent;
@@ -229,6 +251,10 @@ input {
   border-top: 1px solid var(--cor-borda);
 }
 
+.tabela-administradores tbody tr:hover {
+  background: rgba(23, 30, 25, 0.55);
+}
+
 .tabela-administradores td {
   font-size: 14px;
   vertical-align: middle;
@@ -259,7 +285,7 @@ input {
   color: var(--cor-texto);
 }
 
-.botao-editar:hover {
+.botao-editar:hover:not(:disabled) {
   background: #2a352b;
 }
 
@@ -270,7 +296,7 @@ input {
   color: var(--cor-perigo);
 }
 
-.botao-excluir:hover {
+.botao-excluir:hover:not(:disabled) {
   background: rgba(255, 69, 75, 0.1);
 }
 
@@ -288,15 +314,116 @@ input {
 }
 
 .aviso-acesso h2 {
-  margin-bottom: 10px;
+  margin: 0 0 10px;
   font-size: 16px;
   font-weight: 700;
 }
 
 .aviso-acesso p {
+  margin: 0;
   color: var(--cor-texto-secundario);
   font-size: 14px;
   line-height: 1.5;
+}
+
+/* ==============================
+   Modal de cadastro / edição
+================================= */
+.modal-fundo {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.modal-administrador {
+  width: min(100%, 460px);
+  padding: 24px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 13px;
+  background: var(--cor-cartao);
+}
+
+.modal-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.modal-cabecalho h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.botao-fechar-modal {
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--cor-texto-secundario);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.botao-fechar-modal:hover:not(:disabled) {
+  color: var(--cor-texto);
+  background: var(--cor-cartao-secundario);
+}
+
+.formulario-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.campo-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.campo-modal label {
+  color: var(--cor-texto-secundario);
+  font-size: 13px;
+}
+
+.campo-modal input,
+.campo-modal select {
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  background: var(--cor-cartao-secundario);
+  color: var(--cor-texto);
+}
+
+.campo-modal input::placeholder {
+  color: #69756d;
+}
+
+.erro-modal {
+  margin: 0;
+  color: var(--cor-perigo);
+  font-size: 13px;
+}
+
+.acoes-modal {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.botao-salvar-modal {
+  margin-top: 0;
 }
 
 /* ==============================

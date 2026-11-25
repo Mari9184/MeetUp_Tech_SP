@@ -1,15 +1,18 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { Auth } from '@angular/fire/auth';
-import { authState } from '@angular/fire/auth';
-import { map, take } from 'rxjs';
+import { catchError, map, of, take } from 'rxjs';
+import { AuthService } from '../services/auth.services';
 
 export const authGuard: CanActivateFn = () => {
-  const auth = inject(Auth);
+  const authService = inject(AuthService);
   const router = inject(Router);
 
-  return authState(auth).pipe(
+  return authService.user$.pipe(
     take(1),
-    map((usuario) => usuario ? true : router.createUrlTree(['/login']))
+    map((usuario) => (usuario ? true : router.createUrlTree(['/login']))),
+    catchError((error: unknown) => {
+      console.error('Não foi possível verificar a sessão autenticada:', error);
+      return of(router.createUrlTree(['/login']));
+    }),
   );
 };

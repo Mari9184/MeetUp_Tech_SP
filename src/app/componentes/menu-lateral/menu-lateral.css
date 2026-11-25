@@ -132,6 +132,18 @@
 .dados-usuario small {
   color: var(--cor-texto-secundario);
   font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dados-usuario .mensagem-perfil {
+  color: var(--cor-alerta);
+}
+
+.dados-usuario .erro-logout {
+  color: var(--cor-alerta);
+  font-size: 10px;
 }
 
 .botao-sair {
@@ -154,6 +166,11 @@
 
 .botao-sair:hover {
   color: var(--cor-destaque);
+}
+
+.botao-sair:disabled {
+  color: var(--cor-texto-suave);
+  cursor: wait;
 }
 
 /* Navegação compacta para telas menores */

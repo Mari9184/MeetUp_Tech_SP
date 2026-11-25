@@ -12,55 +12,84 @@
         </p>
       </header>
 
-      <!-- Seleção do evento e lista de participantes -->
-      <section class="conteudo-principal" aria-label="Participantes dos eventos">
-        <!-- Filtros e eventos disponíveis -->
-        <aside class="painel-selecao">
-          <h2>Selecione um evento</h2>
-          <label class="rotulo-pesquisa" for="pesquisa-evento">Buscar evento</label>
-          <div class="campo-pesquisa">
-            <span class="icone-pesquisa" aria-hidden="true">⌕</span>
-            <input id="pesquisa-evento" type="search" placeholder="Nome do evento..." />
-          </div>
+      @if (carregando()) {
+        <p class="descricao-pagina">Carregando eventos...</p>
+      } @else if (erro()) {
+        <p class="descricao-pagina" role="alert">{{ erro() }}</p>
+      } @else {
+        <!-- Seleção do evento e lista de participantes -->
+        <section class="conteudo-principal" aria-label="Participantes dos eventos">
+          <!-- Filtros e eventos disponíveis -->
+          <aside class="painel-selecao">
+            <h2>Selecione um evento</h2>
+            <label class="rotulo-pesquisa" for="pesquisa-evento">Buscar evento</label>
+            <div class="campo-pesquisa">
+              <span class="icone-pesquisa" aria-hidden="true">⌕</span>
+              <input
+                id="pesquisa-evento"
+                type="search"
+                placeholder="Nome do evento..."
+                [value]="termoBusca()"
+                (input)="atualizarBusca($any($event.target).value)"
+              />
+            </div>
 
-          <nav class="lista-eventos" aria-label="Lista de eventos">
-            <a class="cartao-evento evento-selecionado" href="#react-summit" aria-current="true">
-              <strong>React Summit SP: Server Components na prática</strong>
-              <span class="data-evento">04 dez 2026 · 19h</span>
-              <span class="quantidade-participantes participantes-com-vagas">4 participantes</span>
-            </a>
-            <a class="cartao-evento" href="#data-night">
-              <strong>Data Night: engenharia de dados com dbt e BigQuery</strong>
-              <span class="data-evento">09 dez 2026 · 19h30</span>
-              <span class="quantidade-participantes">Sem participantes</span>
-            </a>
-            <a class="cartao-evento" href="#mulheres-design">
-              <strong>Mulheres no Design: portfólio e entrevistas em UX</strong>
-              <span class="data-evento">13 dez 2026 · 10h</span>
-              <span class="quantidade-participantes">Sem participantes</span>
-            </a>
-          </nav>
-        </aside>
+            <nav class="lista-eventos" aria-label="Lista de eventos">
+              @for (ev of eventosFiltrados(); track ev.id) {
+                <a
+                  class="cartao-evento"
+                  [class.evento-selecionado]="eventoSelecionado()?.id === ev.id"
+                  [attr.aria-current]="eventoSelecionado()?.id === ev.id ? 'true' : null"
+                  href="#evento-selecionado"
+                  (click)="selecionarEvento(ev.id, $event)"
+                >
+                  <strong>{{ ev.titulo }}</strong>
+                  <span class="data-evento">{{ ev.dataCartao }}</span>
+                  <span
+                    class="quantidade-participantes"
+                    [class.participantes-com-vagas]="ev.participantes.length > 0"
+                  >
+                    {{ ev.quantidadeTexto }}
+                  </span>
+                </a>
+              } @empty {
+                <p class="data-evento">Nenhum evento encontrado.</p>
+              }
+            </nav>
+          </aside>
 
-        <!-- Detalhes do evento selecionado -->
-        <section class="painel-participantes" id="react-summit">
-          <span class="categoria-evento">REACT SUMMIT SP</span>
-          <h2>Server Components na prática</h2>
-          <p class="data-completa">04 de dezembro de 2026 · 19h às 22h</p>
-          <h3>4 participantes</h3>
-          <span class="rotulo-nome">NOME</span>
-          <ul class="lista-participantes">
-            <li>Ana N.</li>
-            <li>Bruno R.</li>
-            <li>Mariane S.</li>
-            <li>Gabriel T.</li>
-          </ul>
-          <p class="aviso-privacidade">
-            Sem cadastro, sem telefone e sem e-mail. A lista pública mostra somente o nome de quem
-            escolheu participar.
-          </p>
+          <!-- Detalhes do evento selecionado -->
+          @if (eventoSelecionado(); as selecionado) {
+            <section class="painel-participantes" id="evento-selecionado">
+              <span class="categoria-evento">{{ selecionado.categoriaTopo }}</span>
+              <h2>{{ selecionado.titulo }}</h2>
+              <p class="data-completa">{{ selecionado.dataCompleta }}</p>
+              <h3>{{ selecionado.quantidadeTexto }}</h3>
+
+              @if (selecionado.participantes.length > 0) {
+                <span class="rotulo-nome">NOME</span>
+                <ul class="lista-participantes">
+                  @for (pessoa of selecionado.participantes; track pessoa) {
+                    <li>{{ pessoa }}</li>
+                  }
+                </ul>
+              } @else {
+                <p class="data-evento">Ninguém adicionou o nome neste evento ainda.</p>
+              }
+
+              <p class="aviso-privacidade">
+                Sem cadastro, sem telefone e sem e-mail. A lista pública mostra somente o nome de quem
+                escolheu participar.
+              </p>
+            </section>
+          } @else {
+            <section class="painel-participantes" id="evento-selecionado">
+              <h2>Nenhum evento selecionado</h2>
+              <p class="data-completa">Cadastre um evento ou ajuste o filtro de busca.</p>
+            </section>
+          }
         </section>
-      </section>
+      }
     </main>
   </div>
 </div>

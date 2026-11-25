@@ -696,3 +696,21 @@
     grid-template-columns: 1fr;
   }
 }
+
+.botao:disabled,
+.botao-cancelar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mensagem-erro {
+  margin: 0 0 16px;
+  color: var(--cor-vermelho);
+  font-size: 13px;
+}
+
+.mensagem-sucesso {
+  margin: 0 0 16px;
+  color: var(--cor-verde);
+  font-size: 13px;
+}

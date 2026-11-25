@@ -92,13 +92,26 @@
   </nav>
 
   <!-- Perfil fixo exibido no rodapé do menu -->
-  <footer class="perfil-usuario">
-    <span class="avatar-usuario" aria-hidden="true">GT</span>
+  <footer class="perfil-usuario" [attr.aria-busy]="carregandoPerfil()">
+    <span class="avatar-usuario" aria-hidden="true">{{ iniciaisUsuario() }}</span>
     <span class="dados-usuario">
-      <strong>Gabriel T.</strong>
-      <small>Fundador</small>
+      <strong>{{ nomeUsuario() }}</strong>
+      <small aria-live="polite">{{ emailUsuario() }}</small>
+      @if (erroPerfil()) {
+        <small class="mensagem-perfil" role="alert">{{ erroPerfil() }}</small>
+      }
+      @if (erroLogout()) {
+        <small class="erro-logout" role="alert">{{ erroLogout() }}</small>
+      }
     </span>
-    <button class="botao-sair" type="button" aria-label="Sair" (click)="sair()">
+    <button
+      class="botao-sair"
+      type="button"
+      [disabled]="saindo()"
+      [attr.aria-label]="saindo() ? 'Saindo' : 'Sair'"
+      [attr.title]="saindo() ? 'Saindo...' : 'Sair da conta'"
+      (click)="sair()"
+    >
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path
           d="M14 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5M10 16l4-4-4-4M14 12H3"
