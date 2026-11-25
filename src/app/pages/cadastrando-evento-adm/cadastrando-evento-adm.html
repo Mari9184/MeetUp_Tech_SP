@@ -1,0 +1,324 @@
+<!-- Estrutura geral do painel administrativo -->
+<div class="layout-administrativo">
+  <app-menu-lateral />
+  <div class="conteudo-administrativo">
+    <main class="pagina-cadastro">
+      <!-- Cabeçalho e caminho de navegação -->
+      <header class="cabecalho-pagina">
+        <nav class="caminho-navegacao" aria-label="Navegação estrutural">
+          <a href="/eventos">← Eventos</a>
+          <span>/</span>
+          <span>Novo evento</span>
+        </nav>
+
+        <div class="cabecalho-conteudo">
+          <div>
+            <h1>Cadastrar evento</h1>
+            <p>Preencha a ficha padronizada. Campos com * são obrigatórios.</p>
+          </div>
+          <div class="acoes-cabecalho">
+            <button class="botao botao-secundario" type="button">Salvar rascunho</button>
+            <button class="botao botao-principal" type="submit" form="formulario-evento">
+              ✓ &nbsp; Publicar evento
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Formulário do evento e painel de pré-visualização -->
+      <section class="estrutura-cadastro" aria-label="Cadastro e pré-visualização do evento">
+        <form class="formulario-evento" id="formulario-evento">
+          <!-- Seção 1: informações básicas -->
+          <section class="cartao-formulario">
+            <header class="titulo-secao">
+              <h2>1. Informações básicas</h2>
+              <p>Como o evento vai aparecer no calendário.</p>
+            </header>
+
+            <div class="grupo-campo">
+              <label for="titulo-evento">Título do evento *</label>
+              <input
+                class="campo-entrada campo-destaque"
+                id="titulo-evento"
+                name="titulo"
+                type="text"
+                value="React Summit SP: Server Components na prática"
+                required
+              />
+            </div>
+
+            <div class="grade-campos grade-dupla">
+              <div class="grupo-campo">
+                <label for="area-tecnologia">Área tech *</label>
+                <div class="campo-com-icone">
+                  <span aria-hidden="true">‹›</span>
+                  <select id="area-tecnologia" name="area" required>
+                    <option>Dev · Front-end</option>
+                    <option>Dados</option>
+                    <option>UX/UI</option>
+                    <option>Cloud</option>
+                    <option>Inteligência Artificial</option>
+                    <option>Segurança</option>
+                  </select>
+                </div>
+              </div>
+              <div class="grupo-campo">
+                <label for="empresa-organizadora">Empresa organizadora *</label>
+                <div class="campo-com-icone">
+                  <span aria-hidden="true">▦</span>
+                  <input
+                    id="empresa-organizadora"
+                    name="empresa"
+                    type="text"
+                    value="Nubank"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="grupo-campo">
+              <label for="descricao-evento">Descrição</label>
+              <textarea id="descricao-evento" name="descricao" maxlength="600">
+Uma noite para entender, na prática, como os React Server Components mudam a forma de construir aplicações. Duas palestras curtas, live coding e networking.</textarea>
+              <small class="contador-caracteres">152 / 600 caracteres</small>
+            </div>
+          </section>
+
+          <!-- Seção 2: data, horário e local -->
+          <section class="cartao-formulario">
+            <header class="titulo-secao">
+              <h2>2. Data, horário e local</h2>
+            </header>
+
+            <div class="grade-campos grade-tripla">
+              <div class="grupo-campo">
+                <label for="data-evento">Data *</label>
+                <div class="campo-com-icone">
+                  <span aria-hidden="true">▦</span>
+                  <input id="data-evento" name="data" type="text" value="04/12/2026" required />
+                </div>
+              </div>
+              <div class="grupo-campo">
+                <label for="horario-inicio">Início *</label>
+                <div class="campo-com-icone">
+                  <span aria-hidden="true">◷</span>
+                  <input id="horario-inicio" name="inicio" type="text" value="19h00" required />
+                </div>
+              </div>
+              <div class="grupo-campo">
+                <label for="horario-termino">Término</label>
+                <div class="campo-com-icone">
+                  <span aria-hidden="true">◷</span>
+                  <input id="horario-termino" name="termino" type="text" value="22h00" />
+                </div>
+              </div>
+            </div>
+
+            <fieldset class="grupo-campo grupo-formato">
+              <legend>Formato *</legend>
+              <div class="opcoes-formato">
+                <label class="opcao-formato opcao-selecionada"
+                  ><input type="radio" name="formato" value="presencial" checked /><span
+                    >♧ &nbsp; Presencial</span
+                  ></label
+                >
+                <label class="opcao-formato"
+                  ><input type="radio" name="formato" value="online" /><span
+                    >▣ &nbsp; Online</span
+                  ></label
+                >
+                <label class="opcao-formato"
+                  ><input type="radio" name="formato" value="hibrido" /><span
+                    >♧ &nbsp; Híbrido</span
+                  ></label
+                >
+              </div>
+            </fieldset>
+
+            <div class="grade-campos grade-dupla">
+              <div class="grupo-campo">
+                <label for="local-evento">Local / endereço *</label>
+                <div class="campo-com-icone">
+                  <span aria-hidden="true">♧</span>
+                  <input
+                    id="local-evento"
+                    name="local"
+                    type="text"
+                    value="Google for Startups — Av. Paulista, 1000"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="grupo-campo">
+                <label for="estacao-proxima">Estação por perto</label>
+                <div class="campo-com-icone">
+                  <span aria-hidden="true">▦</span>
+                  <input
+                    id="estacao-proxima"
+                    name="estacao"
+                    type="text"
+                    value="Brigadeiro (Linha 2 – Verde)"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Seção 3: público e inscrição -->
+          <section class="cartao-formulario">
+            <header class="titulo-secao">
+              <h2>3. Público e inscrição</h2>
+            </header>
+
+            <div class="grupo-campo">
+              <label for="link-inscricao">Link de inscrição *</label>
+              <div class="campo-com-icone">
+                <span aria-hidden="true">↗</span>
+                <input
+                  id="link-inscricao"
+                  name="inscricao"
+                  type="url"
+                  value="https://sympla.com.br/react-summit-sp"
+                  required
+                />
+              </div>
+            </div>
+
+            <fieldset class="grupo-campo grupo-publico">
+              <legend>Público-alvo *</legend>
+              <div class="lista-opcoes">
+                <label class="etiqueta-opcao etiqueta-marcada"
+                  ><input type="checkbox" name="publico" value="todos" checked /><span
+                    >✓ &nbsp; Todos os níveis</span
+                  ></label
+                >
+                <label class="etiqueta-opcao etiqueta-marcada"
+                  ><input type="checkbox" name="publico" value="iniciantes" checked /><span
+                    >✓ &nbsp; Iniciantes</span
+                  ></label
+                >
+                <label class="etiqueta-opcao"
+                  ><input type="checkbox" name="publico" value="mulheres" /><span
+                    >Mulheres na Tech</span
+                  ></label
+                >
+                <label class="etiqueta-opcao"
+                  ><input type="checkbox" name="publico" value="intermediario" /><span
+                    >Intermediário/Avançado</span
+                  ></label
+                >
+                <label class="etiqueta-opcao"
+                  ><input type="checkbox" name="publico" value="membros" /><span
+                    >Exclusivo membros</span
+                  ></label
+                >
+              </div>
+            </fieldset>
+          </section>
+
+          <!-- Seção 4: selos e destaques -->
+          <section class="cartao-formulario">
+            <header class="titulo-secao">
+              <h2>4. Selos e destaques (RF04)</h2>
+              <p>Ajudam o membro a bater o olho e entender o evento.</p>
+            </header>
+
+            <div class="lista-selos">
+              <label class="cartao-selo selo-ativo"
+                ><input type="checkbox" checked /><span class="selo selo-laranja"
+                  >● &nbsp; VAGAS LIMITADAS</span
+                ></label
+              >
+              <label class="cartao-selo selo-ativo"
+                ><input type="checkbox" checked /><span class="selo selo-azul"
+                  >● &nbsp; INICIANTES</span
+                ></label
+              >
+              <label class="cartao-selo"
+                ><input type="checkbox" /><span class="selo selo-roxo"
+                  >● &nbsp; EXCLUSIVO</span
+                ></label
+              >
+              <label class="cartao-selo"
+                ><input type="checkbox" /><span class="selo selo-rosa"
+                  >● &nbsp; MULHERES NA TECH</span
+                ></label
+              >
+              <label class="cartao-selo"
+                ><input type="checkbox" /><span class="selo selo-cinza"
+                  >● &nbsp; ENCERRADO</span
+                ></label
+              >
+            </div>
+
+            <p class="observacao-selos">
+              ◷ &nbsp; “Encerrado” é aplicado automaticamente quando as vagas acabam ou a data
+              passa.
+            </p>
+          </section>
+        </form>
+
+        <!-- Prévia e informações auxiliares -->
+        <aside class="barra-lateral">
+          <header class="acoes-laterais">
+            <span class="rotulo-previsualizacao">◉ &nbsp; PRÉ-VISUALIZAÇÃO DO CARD</span>
+          </header>
+
+          <!-- Cartão de pré-visualização -->
+          <article class="cartao-previa">
+            <header class="cabecalho-cartao-previa">
+              <div class="data-cartao">
+                <span>DEZ</span>
+                <strong>04</strong>
+              </div>
+              <span class="simbolo-codigo" aria-hidden="true">‹ / ›</span>
+            </header>
+            <div class="conteudo-cartao-previa">
+              <span class="categoria-previa">‹› DEV</span>
+              <div class="selos-previa">
+                <span class="selo selo-laranja">● &nbsp; VAGAS LIMITADAS</span>
+                <span class="selo selo-azul">● &nbsp; INICIANTES</span>
+              </div>
+              <h2>React Summit SP: Server Components na prática</h2>
+              <ul class="detalhes-evento">
+                <li>◷ &nbsp; Qui, 04 dez · 19h00 – 22h00</li>
+                <li>♧ &nbsp; Google for Startups · Av. Paulista</li>
+                <li>▦ &nbsp; Estação Brigadeiro (Linha 2 – Verde)</li>
+                <li>▦ &nbsp; Organização: Nubank</li>
+              </ul>
+              <div class="botoes-previa">
+                <button class="botao botao-principal" type="button">Ver detalhes</button>
+                <button class="botao botao-contorno" type="button">▦ &nbsp; Google Agenda</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Resumo da completude do formulário -->
+          <section class="cartao-completude">
+            <header class="cabecalho-completude">
+              <h2>Ficha completa</h2>
+              <strong>10/10</strong>
+            </header>
+            <ul>
+              <li>✓ &nbsp; Título, área e empresa</li>
+              <li>✓ &nbsp; Data, horário e formato</li>
+              <li>✓ &nbsp; Local e estação por perto</li>
+              <li>✓ &nbsp; Público-alvo</li>
+              <li>✓ &nbsp; Link de inscrição válido</li>
+            </ul>
+          </section>
+
+          <!-- Ação de cancelamento -->
+          <section class="cartao-cancelamento">
+            <h2>Cancelar evento</h2>
+            <p>
+              O card ganha o selo “Cancelado” e quem salvou no Google Agenda recebe a atualização.
+            </p>
+            <button class="botao-cancelar" type="button">⊗ &nbsp; Cancelar este evento</button>
+          </section>
+        </aside>
+      </section>
+    </main>
+  </div>
+</div>

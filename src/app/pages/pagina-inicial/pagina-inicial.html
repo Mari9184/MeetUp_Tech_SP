@@ -1,0 +1,370 @@
+<!-- Cabeçalho e navegação pública -->
+<header class="barra-superior">
+  <nav aria-label="Navegação principal" class="navegacao conteiner">
+    <a aria-label="Meetup Tech SP" class="marca" routerLink="/">
+      <img class="imagem-marca" src="Logo.png" alt="Logo Meetup Tech SP" />
+    </a>
+    <div class="links-navegacao">
+      <a class="ativo" href="#eventos">Eventos</a>
+      <a href="#sobre">Sobre</a>
+    </div>
+    <a class="link-administracao" routerLink="/login">
+      <span>♙</span>
+      Área do admin
+    </a>
+  </nav>
+</header>
+
+<main>
+  <!-- Apresentação e evento em destaque -->
+  <section class="apresentacao conteiner">
+    <div class="texto-apresentacao">
+      <span class="texto-destaque etiqueta-arredondada">
+        <span class="simbolo-destaque">&lsaquo; &rsaquo;</span>
+        EVENTOS QUE CONECTAM
+      </span>
+      <h1>
+        Todos os eventos tech
+        <br />
+        de
+        <em>São Paulo</em>
+        em um
+        <br />
+        só lugar.
+      </h1>
+      <p>
+        Chega de perder inscrição no meio das mensagens do grupo. Encontre meetups,
+        workshops e palestras por data, área e público &mdash; e salve direto no seu
+        Google Agenda.
+      </p>
+      <a class="botao principal" href="#eventos">▦ &nbsp; Ver próximos eventos</a>
+
+      <section class="estatisticas" aria-label="Indicadores da comunidade">
+        <article>
+          <strong>120+</strong>
+          <small>eventos por ano</small>
+        </article>
+        <article>
+          <strong>3,4 mil</strong>
+          <small>membros na comunidade</small>
+        </article>
+        <article>
+          <strong>100%</strong>
+          <small>gratuito para consultar</small>
+        </article>
+      </section>
+    </div>
+
+    @if (eventoDestaque(); as destaque) {
+      <aside class="lateral-apresentacao">
+        <div class="rotulo-evento-destaque">
+          <span></span>
+          PRÓXIMO EVENTO EM DESTAQUE
+        </div>
+        <article class="cartao-evento-destaque">
+          <div class="ilustracao-evento">
+            <div class="data-evento">
+              <small>{{ destaque.mesAbrev }}</small>
+              <b>{{ destaque.dia }}</b>
+            </div>
+            <span class="ilustracao-codigo">&lt;/&gt;</span>
+          </div>
+          <div class="conteudo-evento-destaque">
+            <span class="etiqueta" [class]="classeArea(destaque.area)">
+              &lsaquo; &rsaquo; {{ destaque.area.toUpperCase() }}
+            </span>
+            <div class="etiquetas">
+              <span class="etiqueta verde">◉ {{ destaque.formato.toUpperCase() }}</span>
+              @if (destaque.destaqueStatus) {
+                <span class="etiqueta ambar">◆ {{ destaque.destaqueStatus }}</span>
+              }
+            </div>
+            <h3>{{ destaque.titulo }}</h3>
+            <ul class="informacoes-evento">
+              <li>◷ &nbsp;{{ destaque.horario }}</li>
+              <li>♧ &nbsp;{{ destaque.local }}</li>
+              <li>▦ &nbsp;{{ destaque.acesso }}</li>
+              <li>▤ &nbsp;Organização: {{ destaque.organizacao }}</li>
+            </ul>
+            <div class="acoes-cartao">
+              <a class="botao principal" [routerLink]="['/evento', destaque.id]">Ver detalhes</a>
+              <a
+                class="botao contornado"
+                [href]="urlGoogleAgenda(destaque)"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ▦ &nbsp; Google Agenda
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <aside class="prova-social" aria-labelledby="titulo-ir-em-grupo">
+          <div>
+            <b id="titulo-ir-em-grupo">O que é “Ir em grupo”?</b>
+            <small>
+              Uma forma de encontrar companhia para o evento: veja quem também vai e combine de ir junto.
+            </small>
+          </div>
+        </aside>
+      </aside>
+    }
+  </section>
+
+  <!-- Calendário e ferramentas de busca de eventos -->
+  <section class="secao-eventos conteiner" id="eventos">
+    <header class="cabecalho-secao">
+      <div>
+        <span class="subtitulo-secao">CALENDÁRIO</span>
+        <h2>Próximos eventos</h2>
+        <p>Organizados por data. Use os filtros para achar o que combina com você.</p>
+      </div>
+      <div class="ferramentas-busca">
+        <label class="campo-busca">
+          <span>&telrec;</span>
+          <input
+            placeholder="Buscar por evento, empresa ou local..."
+            type="search"
+            [value]="busca()"
+            (input)="busca.set($any($event.target).value)"
+          />
+        </label>
+        <button
+          type="button"
+          aria-label="Visualização em grade"
+          class="botao-visualizacao"
+          [class.ativo]="visualizacao() === 'grade'"
+          (click)="visualizacao.set('grade')"
+        >
+          ▦
+        </button>
+        <button
+          type="button"
+          aria-label="Visualização em calendário"
+          class="botao-visualizacao"
+          [class.ativo]="visualizacao() === 'calendario'"
+          (click)="visualizacao.set('calendario')"
+        >
+          ▣
+        </button>
+      </div>
+    </header>
+
+    <!-- Filtros e ordenação dos eventos -->
+    <section class="filtros" aria-label="Filtros de eventos">
+      <div class="linha-filtro">
+        <span class="rotulo-filtro">ÁREA</span>
+        <div class="opcoes-filtro">
+          @for (area of areas; track area) {
+            <button
+              type="button"
+              class="opcao-filtro"
+              [class.selecionado]="areaSelecionada() === area"
+              (click)="areaSelecionada.set(area)"
+            >
+              @if (areaSelecionada() === area) {
+                &checkmark;
+              }
+              {{ area }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="linha-filtro">
+        <span class="rotulo-filtro">FORMATO</span>
+        <div class="opcoes-filtro">
+          @for (formato of formatos; track formato) {
+            <button
+              type="button"
+              class="opcao-filtro"
+              [class.selecionado]="formatoSelecionado() === formato"
+              (click)="formatoSelecionado.set(formato)"
+            >
+              @if (formatoSelecionado() === formato) {
+                &checkmark;
+              }
+              {{ formato }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="linha-filtro">
+        <span class="rotulo-filtro">PÚBLICO-ALVO</span>
+        <div class="opcoes-filtro">
+          @for (publico of publicos; track publico) {
+            <button
+              type="button"
+              class="opcao-filtro"
+              [class.selecionado]="publicoSelecionado() === publico"
+              (click)="publicoSelecionado.set(publico)"
+            >
+              @if (publicoSelecionado() === publico) {
+                &checkmark;
+              }
+              {{ publico }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="rodape-filtros">
+        <span>
+          <b>{{ eventosFiltrados().length }}</b>
+          eventos encontrados &middot; {{ formatoSelecionado() }}
+          <button type="button" class="limpar-filtros" (click)="limparFiltros()">
+            Limpar filtros
+          </button>
+        </span>
+        <button type="button" class="limpar-filtros ordenacao" (click)="alternarOrdenacao()">
+          Ordenar:
+          <b>{{ ordenacao() === 'proxima' ? 'Data mais próxima ⌄' : 'Ordem alfabética ⌄' }}</b>
+        </button>
+      </div>
+    </section>
+
+    @if (carregandoEventos()) {
+      <p class="mensagem-vazia">Carregando eventos...</p>
+    } @else if (erroEventos()) {
+      <p class="mensagem-vazia">{{ erroEventos() }}</p>
+    } @else if (gruposPorMes().length === 0) {
+      <p class="mensagem-vazia">Nenhum evento cadastrado ainda.</p>
+    } @else {
+      @for (grupo of gruposPorMes(); track grupo.mes; let idx = $index) {
+        <h3 class="cabecalho-mes" [class.segundo-mes]="idx > 0">{{ grupo.mes }}</h3>
+        <section
+          class="grade-eventos"
+          [class.modo-calendario]="visualizacao() === 'calendario'"
+          [attr.aria-label]="'Eventos de ' + grupo.mes"
+        >
+          @for (evento of grupo.eventos; track evento.id) {
+            <article class="cartao-evento" [class.desativado]="evento.encerrado">
+              <div class="ilustracao-evento">
+                <div class="data-evento">
+                  <small>{{ evento.mesAbrev }}</small>
+                  <b>{{ evento.dia }}</b>
+                </div>
+                <span class="ilustracao-codigo">&lt;/&gt;</span>
+              </div>
+              <div class="corpo-cartao-evento">
+                <span class="etiqueta" [class]="classeArea(evento.area)">
+                  &lsaquo; &rsaquo; {{ evento.area.toUpperCase() }}
+                </span>
+                <div class="etiquetas">
+                  <span class="etiqueta verde">◉ {{ evento.formato.toUpperCase() }}</span>
+                  @if (evento.destaqueStatus) {
+                    <span
+                      class="etiqueta"
+                      [class.ambar]="evento.destaqueStatus === 'VAGAS LIMITADAS'"
+                      [class.azul]="evento.destaqueStatus === 'INICIANTES'"
+                      [class.rosa]="evento.destaqueStatus === 'MULHERES NA TECH'"
+                      [class.roxo]="evento.destaqueStatus === 'EXCLUSIVO'"
+                      [class.discreto]="evento.destaqueStatus === 'ENCERRADO'"
+                    >
+                      ◆ {{ evento.destaqueStatus }}
+                    </span>
+                  }
+                </div>
+                <h3>{{ evento.titulo }}</h3>
+                <ul class="informacoes-evento">
+                  <li>◷ &nbsp;{{ evento.horario }}</li>
+                  <li>♧ &nbsp;{{ evento.local }}</li>
+                  <li>▦ &nbsp;{{ evento.acesso }}</li>
+                  <li>▤ &nbsp;Organização: {{ evento.organizacao }}</li>
+                </ul>
+                <div class="acoes-cartao">
+                  @if (evento.encerrado) {
+                    <span class="botao indisponivel">Inscrições encerradas</span>
+                  } @else {
+                    <a class="botao principal" [routerLink]="['/evento', evento.id]">Ver detalhes</a>
+                    <a
+                      class="botao contornado"
+                      [href]="urlGoogleAgenda(evento)"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      ▦ &nbsp; Google Agenda
+                    </a>
+                  }
+                </div>
+              </div>
+            </article>
+          }
+        </section>
+      }
+    }
+
+    <!-- Ação de navegação do calendário -->
+    <footer class="mais-eventos">
+      <button
+        type="button"
+        class="botao botao-carregar-mais"
+        (click)="mostrarTodos.set(!mostrarTodos())"
+      >
+        ⌄ &nbsp; {{ mostrarTodos() ? 'Mostrar menos eventos' : 'Carregar mais eventos' }}
+      </button>
+    </footer>
+  </section>
+
+  <!-- Informações sobre a comunidade -->
+  <section class="secao-sobre conteiner" id="sobre">
+    <div>
+      <span class="subtitulo-secao">SOBRE</span>
+      <h2>
+        Conectando a
+        <br />
+        comunidade tech de
+        <br />
+        São Paulo.
+      </h2>
+    </div>
+    <div class="texto-sobre">
+      <p>
+        O Meetup Tech SP reúne eventos de tecnologia em São Paulo para aproximar
+        pessoas, compartilhar conhecimento e criar novas conexões.
+      </p>
+      <p>
+        Encontre meetups, workshops e palestras por data, área e público. Salve os
+        encontros no Google Agenda e organize sua próxima experiência.
+      </p>
+      <p>
+        Quer ir acompanhado? Adicione seu nome à lista de quem vai ao evento &mdash; sem
+        precisar criar uma conta.
+      </p>
+    </div>
+  </section>
+</main>
+
+<!-- Rodapé institucional e links complementares -->
+<footer class="rodape">
+  <div class="conteiner">
+    <div class="conteudo-rodape">
+      <div class="marca-rodape">
+        <img class="imagem-marca" src="Logo.png" alt="Logo Meetup Tech SP" />
+        <p>
+          Comunidade que reúne eventos de tecnologia em São Paulo. Encontre encontros,
+          workshops e palestras em um só lugar.
+        </p>
+      </div>
+      <nav class="coluna-rodape" aria-label="Navegação do rodapé">
+        <b>NAVEGAÇÃO</b>
+        <a href="#eventos">Eventos</a>
+        <a href="#sobre">Sobre</a>
+      </nav>
+      <nav class="coluna-rodape" aria-label="Links legais">
+        <b>LEGAL</b>
+        <a href="#privacidade">Política de privacidade (LGPD)</a>
+        <a href="#termos">Termos de uso</a>
+        <a routerLink="/login">Área do admin</a>
+      </nav>
+    </div>
+    <div class="rodape-inferior">
+      <span>
+        &copy; 2026 Meetup Tech SP &middot; Projeto Integrador ADS &mdash; Senac Santo Amaro
+      </span>
+      <span>Coletamos apenas o mínimo de dados, com seu consentimento.</span>
+    </div>
+  </div>
+</footer>

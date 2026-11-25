@@ -1,0 +1,979 @@
+/*
+- MEETUP TECH SP — PÁGINA INICIAL
+- Classes em português; estilos separados por áreas da interface.
+ */
+
+/* 1. Variáveis e configurações gerais */
+:host {
+  display: block;
+  min-height: 100vh;
+  font-size: 14px;
+  --muted: var(--cor-texto-secundario);
+  --green: var(--cor-destaque);
+  --mono: var(--fonte-monospace);
+}
+
+.conteiner {
+  width: min(var(--largura-publica), calc(100% - 64px));
+  margin: 0 auto;
+}
+
+/* 2. Cabeçalho e navegação */
+.barra-superior {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--tamanho-logo-cabecalho);
+  border-bottom: 1px solid #202720;
+  background: #090e0a;
+}
+
+.navegacao {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.imagem-marca {
+  display: block;
+  width: var(--tamanho-logo-cabecalho);
+  height: var(--tamanho-logo-cabecalho);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.links-navegacao {
+  display: flex;
+  gap: 27px;
+  align-items: center;
+  height: 100%;
+}
+
+.links-navegacao a {
+  color: #929b91;
+  font-size: 12px;
+}
+
+.links-navegacao a.ativo {
+  color: var(--green);
+}
+
+.link-administracao {
+  margin-left: auto;
+  color: var(--green);
+  border: 1px solid #477d08;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* 3. Apresentação e evento em destaque */
+.apresentacao {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 70px;
+  padding-top: 108px;
+  min-height: 620px;
+}
+
+.texto-apresentacao {
+  padding-top: 15px;
+}
+
+.texto-destaque,
+.subtitulo-secao,
+.rotulo-evento-destaque,
+.cabecalho-mes,
+.rotulo-filtro {
+  font-family: var(--mono);
+  letter-spacing: 1.3px;
+  font-size: 9px;
+}
+
+.etiqueta-arredondada {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--green);
+  border: 1px solid #31580a;
+  background: #14200d;
+  border-radius: 30px;
+  padding: 5px 11px;
+  font-weight: 500;
+}
+
+.simbolo-destaque {
+  font-size: 13px;
+}
+
+h1 {
+  font-size: clamp(42px, 5vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -2.2px;
+  margin: 25px 0 24px;
+  font-weight: 800;
+}
+
+h1 em {
+  color: var(--green);
+  font-style: normal;
+}
+
+.texto-apresentacao > p {
+  max-width: 555px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.75;
+  margin: 0 0 25px;
+}
+
+.botao {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 9px;
+  min-height: 37px;
+  padding: 0 16px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.principal {
+  color: #101611;
+  background: var(--green);
+  border: 1px solid var(--green);
+}
+
+.principal:hover {
+  background: #a2ff19;
+}
+
+.estatisticas {
+  display: flex;
+  gap: 34px;
+  margin-top: 37px;
+}
+
+.estatisticas article {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.estatisticas strong {
+  color: var(--green);
+  font-size: 23px;
+  line-height: 1;
+}
+
+.estatisticas small {
+  color: #90988d;
+  font-size: 10px;
+}
+
+.lateral-apresentacao {
+  width: 100%;
+  max-width: 390px;
+  justify-self: end;
+  padding-top: 0;
+  position: relative;
+}
+
+.rotulo-evento-destaque {
+  color: #84927c;
+  margin: 0 0 17px;
+  font-size: 9px;
+}
+
+.rotulo-evento-destaque span {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  margin-right: 8px;
+}
+
+.cartao-evento-destaque,
+.cartao-evento {
+  border: 1px solid #29352a;
+  border-radius: 16px;
+  background: #101611;
+  overflow: hidden;
+}
+
+.cartao-evento-destaque {
+  box-shadow: 0 15px 55px #76c90017;
+}
+
+.ilustracao-evento {
+  height: 104px;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 80% 15%, #1e3212 0%, #121d0f 45%, #111811 100%);
+  border-bottom: 1px solid #263126;
+}
+
+.ilustracao-codigo {
+  position: absolute;
+  right: 15px;
+  top: -22px;
+  color: #273c16;
+  font-family: var(--mono);
+  font-size: 105px;
+  font-weight: 500;
+  letter-spacing: -20px;
+  transform: rotate(-7deg);
+  opacity: 0.8;
+}
+
+.data-evento {
+  position: absolute;
+  z-index: 1;
+  left: 15px;
+  top: 14px;
+  width: 47px;
+  height: 53px;
+  border: 1px solid #487e0b;
+  border-radius: 10px;
+  background: #0c130b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.data-evento small {
+  color: var(--green);
+  font-family: var(--mono);
+  font-size: 9px;
+}
+
+.data-evento b {
+  color: white;
+  font-size: 23px;
+  line-height: 1.2;
+}
+
+.conteudo-evento-destaque {
+  padding: 13px 16px 17px;
+}
+
+.etiqueta {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 30px;
+  padding: 4px 8px;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.3px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.etiqueta-desenvolvimento,
+.etiqueta-dados,
+.etiqueta-ux-ui,
+.etiqueta-ia,
+.etiqueta-nuvem,
+.etiqueta-seguranca {
+  background: #111a11;
+  color: #b3c0a9;
+}
+
+.etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 14px 0 12px;
+}
+
+.verde {
+  color: var(--green);
+  background: #18280d;
+  border: 1px solid #355d0a;
+}
+
+.ambar {
+  color: #f0ad38;
+  background: #2a2110;
+  border: 1px solid #735018;
+}
+
+.azul {
+  color: #42c7dc;
+  background: #10232a;
+  border: 1px solid #15576a;
+}
+
+.rosa {
+  color: #f26ac1;
+  background: #2b1526;
+  border: 1px solid #702c5c;
+}
+
+.roxo {
+  color: #c68aff;
+  background: #21172d;
+  border: 1px solid #52346c;
+}
+
+.discreto {
+  color: #7a8278;
+  background: #202621;
+}
+
+.conteudo-evento-destaque h3,
+.corpo-cartao-evento h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.informacoes-evento {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  color: #9aa398;
+  font-size: 10px;
+  line-height: 1.9;
+}
+
+.informacoes-evento li:first-letter {
+  color: var(--green);
+}
+
+.acoes-cartao {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.acoes-cartao .botao {
+  flex: 1;
+  min-height: 34px;
+  padding: 0 8px;
+  font-size: 10px;
+}
+
+.contornado {
+  border: 1px solid #5b990e;
+  color: var(--green);
+  background: transparent;
+}
+
+.prova-social {
+  margin: 35px 0 0 auto;
+  width: min(100%, 390px);
+  max-width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border: 1px solid #273027;
+  border-radius: 13px;
+  padding: 12px 15px;
+  background: #151c16;
+  box-shadow: 0 10px 30px #0005;
+}
+
+.prova-social b,
+.prova-social small {
+  display: block;
+}
+
+.prova-social b {
+  font-size: 11px;
+}
+
+.prova-social small {
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+  margin-top: 6px;
+}
+
+/* 4. Seção de eventos e busca */
+.secao-eventos {
+  padding-top: 5px;
+}
+
+.cabecalho-secao {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 32px;
+}
+
+.subtitulo-secao {
+  color: var(--green);
+  font-size: 9px;
+}
+
+h2 {
+  margin: 8px 0 8px;
+  font-size: 35px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.cabecalho-secao p {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0;
+}
+
+.ferramentas-busca {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.campo-busca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 330px;
+  height: 40px;
+  padding: 0 13px;
+  border: 1px solid #2a352b;
+  border-radius: 9px;
+  background: #111812;
+  color: #879286;
+}
+
+.campo-busca input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: white;
+  font-size: 11px;
+}
+
+.campo-busca input::placeholder {
+  color: #667166;
+}
+
+.botao-visualizacao {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #29332a;
+  border-radius: 8px;
+  background: #151c16;
+  color: #a1ad9c;
+  cursor: pointer;
+}
+
+.botao-visualizacao.ativo {
+  color: var(--green);
+  border-color: #365d0b;
+  background: #1b2a11;
+}
+
+.filtros {
+  border: 1px solid #29332a;
+  border-radius: 15px;
+  background: #101611;
+  padding: 18px 20px 15px;
+  margin-bottom: 35px;
+}
+
+.linha-filtro {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 42px;
+}
+
+.rotulo-filtro {
+  width: 105px;
+  flex: 0 0 105px;
+  color: #a0aa9c;
+  font-size: 9px;
+}
+
+.opcoes-filtro {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.opcao-filtro {
+  border: 1px solid #29332a;
+  background: #171f18;
+  color: #a4ada1;
+  padding: 7px 12px;
+  border-radius: 25px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.opcao-filtro.selecionado {
+  color: var(--green);
+  border-color: #528c0b;
+  background: #1a2a10;
+}
+
+.rodape-filtros {
+  border-top: 1px solid #252e26;
+  margin-top: 12px;
+  padding-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #b6beb3;
+  font-size: 10px;
+}
+
+.rodape-filtros b {
+  color: var(--green);
+}
+
+.limpar-filtros {
+  border: 0;
+  background: transparent;
+  color: var(--green);
+  margin-left: 10px;
+  font-size: 10px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.ordenacao {
+  margin-left: 0;
+  color: #899388;
+}
+
+.ordenacao b {
+  color: #d4dbd1;
+  font-weight: 500;
+}
+
+.mensagem-vazia {
+  color: var(--muted);
+  font-size: 13px;
+  padding: 24px 0;
+}
+
+/* 5. Filtros, meses e cartões de eventos */
+.cabecalho-mes {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--green);
+  margin: 0 0 22px;
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.cabecalho-mes::after {
+  content: '';
+  height: 1px;
+  background: #202a21;
+  flex: 1;
+}
+
+.grade-eventos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.grade-eventos.modo-calendario {
+  grid-template-columns: 1fr;
+}
+
+.cartao-evento {
+  border-radius: 16px;
+}
+
+.cartao-evento .ilustracao-evento {
+  height: 105px;
+}
+
+.corpo-cartao-evento {
+  padding: 12px 16px 17px;
+}
+
+.corpo-cartao-evento .etiquetas {
+  margin: 13px 0 11px;
+}
+
+.corpo-cartao-evento h3 {
+  min-height: 43px;
+  font-size: 16px;
+  margin-bottom: 9px;
+}
+
+.corpo-cartao-evento .informacoes-evento {
+  font-size: 10px;
+  line-height: 1.95;
+}
+
+.corpo-cartao-evento .acoes-cartao {
+  margin-top: 17px;
+}
+
+.cartao-evento.desativado {
+  opacity: 0.62;
+}
+
+.cartao-evento.desativado .ilustracao-evento {
+  filter: saturate(0.45);
+}
+
+.indisponivel {
+  width: 100%;
+  background: #222a23;
+  color: #8b9489;
+  border: 1px solid #29332a;
+}
+
+.segundo-mes {
+  margin-top: 38px;
+}
+
+.mais-eventos {
+  text-align: center;
+  margin-top: 28px;
+}
+
+.botao-carregar-mais {
+  background: #202a21;
+  color: #d0d8ce;
+  border: 1px solid #29352a;
+  min-height: 40px;
+}
+
+/* 6. Seção sobre a comunidade */
+.secao-sobre {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  padding-top: 150px;
+  padding-bottom: 90px;
+}
+
+.secao-sobre h2 {
+  font-size: 34px;
+  line-height: 1.2;
+  margin-top: 15px;
+}
+
+.texto-sobre {
+  color: #9aa398;
+  font-size: 14px;
+  line-height: 1.7;
+  padding-top: 5px;
+}
+
+.texto-sobre p {
+  margin: 0 0 17px;
+}
+
+/* 7. Rodapé */
+.rodape {
+  border-top: 1px solid #202920;
+  background: #101611;
+  padding: 45px 0 20px;
+}
+
+.conteudo-rodape {
+  display: grid;
+  grid-template-columns: 1fr 130px 210px;
+  gap: 50px;
+  padding-bottom: 35px;
+}
+
+.marca-rodape p {
+  max-width: 300px;
+  color: #899388;
+  font-size: 11px;
+  line-height: 1.55;
+  margin-top: 17px;
+}
+
+.coluna-rodape {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.coluna-rodape b {
+  color: var(--green);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 1px;
+  margin-bottom: 3px;
+}
+
+.coluna-rodape a {
+  color: #929b91;
+  font-size: 11px;
+}
+
+.rodape-inferior {
+  border-top: 1px solid #263027;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  color: #657064;
+  font-size: 9px;
+}
+
+/* 8. Responsividade — telas médias */
+@media (max-width: 900px) {
+  .conteiner {
+    width: min(100% - 40px, 720px);
+  }
+
+  .apresentacao {
+    gap: 35px;
+    grid-template-columns: 1fr 0.85fr;
+    padding-top: 75px;
+    min-height: 570px;
+  }
+
+  h1 {
+    font-size: 42px;
+  }
+
+  .texto-apresentacao > p {
+    font-size: 13px;
+  }
+
+  .grade-eventos {
+    gap: 12px;
+  }
+
+  .corpo-cartao-evento {
+    padding: 11px;
+  }
+
+  .corpo-cartao-evento h3 {
+    font-size: 14px;
+  }
+
+  .acoes-cartao {
+    flex-direction: column;
+  }
+
+  .campo-busca {
+    width: 250px;
+  }
+
+  .secao-sobre {
+    gap: 40px;
+  }
+}
+
+/* 9. Responsividade — celulares */
+@media (max-width: 650px) {
+  .conteiner {
+    width: calc(100% - 36px);
+  }
+
+  .barra-superior {
+    height: var(--tamanho-logo-cabecalho);
+  }
+
+  .navegacao {
+    gap: 18px;
+  }
+
+  .links-navegacao {
+    gap: 15px;
+  }
+
+  .links-navegacao a {
+    font-size: 10px;
+  }
+
+  .link-administracao {
+    padding: 7px 8px;
+    font-size: 9px;
+  }
+
+  .apresentacao {
+    display: flex;
+    flex-direction: column;
+    padding-top: 55px;
+    gap: 45px;
+    min-height: auto;
+    padding-bottom: 85px;
+  }
+
+  .texto-apresentacao {
+    padding-top: 0;
+  }
+
+  h1 {
+    font-size: clamp(38px, 10vw, 49px);
+    letter-spacing: -1.8px;
+  }
+
+  .texto-apresentacao > p {
+    font-size: 13px;
+  }
+
+  .estatisticas {
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+
+  .estatisticas strong {
+    font-size: 20px;
+  }
+
+  .estatisticas small {
+    font-size: 9px;
+  }
+
+  .lateral-apresentacao {
+    max-width: 420px;
+    width: 100%;
+    align-self: center;
+  }
+
+  .prova-social {
+    margin: 20px 0 0 auto;
+  }
+
+  .secao-eventos {
+    padding-top: 0;
+  }
+
+  .cabecalho-secao {
+    display: block;
+  }
+
+  .cabecalho-secao h2 {
+    font-size: 31px;
+  }
+
+  .ferramentas-busca {
+    margin-top: 20px;
+  }
+
+  .campo-busca {
+    flex: 1;
+    width: auto;
+  }
+
+  .filtros {
+    padding: 14px;
+  }
+
+  .linha-filtro {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 9px;
+    padding: 8px 0;
+  }
+
+  .rotulo-filtro {
+    width: auto;
+    flex: auto;
+  }
+
+  .opcoes-filtro {
+    gap: 6px;
+  }
+
+  .opcao-filtro {
+    padding: 7px 10px;
+    font-size: 9px;
+  }
+
+  .rodape-filtros {
+    gap: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ordenacao {
+    align-self: flex-end;
+  }
+
+  .grade-eventos {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .cartao-evento .ilustracao-evento {
+    height: 115px;
+  }
+
+  .corpo-cartao-evento {
+    padding: 14px;
+  }
+
+  .corpo-cartao-evento h3 {
+    min-height: 0;
+    font-size: 16px;
+  }
+
+  .corpo-cartao-evento .acoes-cartao {
+    flex-direction: row;
+  }
+
+  .secao-sobre {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-top: 100px;
+    padding-bottom: 65px;
+  }
+
+  .secao-sobre h2 {
+    font-size: 31px;
+  }
+
+  .conteudo-rodape {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px 20px;
+  }
+
+  .marca-rodape {
+    grid-column: 1 / -1;
+  }
+
+  .rodape-inferior {
+    flex-direction: column;
+    gap: 10px;
+    line-height: 1.5;
+  }
+}
+
+/* 10. Responsividade — celulares compactos */
+@media (max-width: 390px) {
+  .navegacao {
+    gap: 12px;
+  }
+
+  .links-navegacao {
+    gap: 10px;
+  }
+
+  .links-navegacao a {
+    font-size: 9px;
+  }
+
+  .link-administracao {
+    font-size: 8px;
+  }
+
+  .estatisticas {
+    gap: 16px;
+  }
+
+  .acoes-cartao .botao {
+    font-size: 9px;
+  }
+}

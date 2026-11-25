@@ -1,0 +1,49 @@
+<!-- Fundo e conteúdo do diálogo de participação -->
+<div class="modal-fundo" (click)="cancelar.emit()">
+  <section
+    class="modal-formulario"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="titulo-modal"
+    aria-describedby="descricao-modal aviso-modal"
+    (click)="$event.stopPropagation()"
+  >
+    <!-- Título e explicação do diálogo -->
+    <header>
+      <h2 id="titulo-modal">Ir em grupo</h2>
+      <p class="modal-descricao" id="descricao-modal">
+        Vai com a gente? Adicione seu nome à lista. Não precisa criar uma conta.
+      </p>
+    </header>
+
+    <!-- Campo de nome e ações disponíveis -->
+    <form (submit)="aoEnviar($event)">
+      <label for="nome-participante">Seu nome</label>
+      <input
+        id="nome-participante"
+        name="nome"
+        type="text"
+        placeholder="Como você quer aparecer?"
+        autocomplete="name"
+        pattern=".*\S.*"
+        required
+        autofocus
+        [value]="nome()"
+        (input)="nome.set($any($event.target).value)"
+      />
+
+      @if (erroValidacao()) {
+        <p class="modal-aviso" role="alert">{{ erroValidacao() }}</p>
+      }
+
+      <p class="modal-aviso" id="aviso-modal">
+        Ao adicionar, você autoriza a exibição apenas do seu nome na lista de quem vai ao evento.
+      </p>
+
+      <footer class="modal-acoes">
+        <button class="botao-cancelar" type="button" (click)="cancelar.emit()">Cancelar</button>
+        <button class="botao-adicionar" type="submit">Adicionar meu nome</button>
+      </footer>
+    </form>
+  </section>
+</div>

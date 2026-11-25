@@ -1,0 +1,93 @@
+<!-- Estrutura geral do painel administrativo -->
+<div class="layout-administrativo">
+  <app-menu-lateral />
+  <div class="conteudo-administrativo">
+    <main class="pagina-administradores">
+      <header class="cabecalho-pagina">
+        <div class="informacoes-cabecalho">
+          <span class="identificador-painel">Painel administrativo</span>
+          <h1>Administradores</h1>
+          <p>Gerencie quem pode administrar os eventos e as listas de participantes.</p>
+        </div>
+
+        <button class="botao botao-principal" type="button">
+          <span class="icone-adicionar" aria-hidden="true">＋</span>
+          Novo administrador
+        </button>
+      </header>
+
+      <section class="cartao-administradores" aria-labelledby="titulo-administradores">
+        <div class="cabecalho-cartao">
+          <h2 id="titulo-administradores">3 administradores</h2>
+
+          <div class="campo-busca">
+            <label for="buscar-administrador">Buscar administrador</label>
+            <div class="entrada-busca">
+              <span class="icone-busca" aria-hidden="true">⌕</span>
+              <input type="search" id="buscar-administrador" placeholder="Nome ou e-mail..." />
+            </div>
+          </div>
+        </div>
+
+        <div class="rolagem-tabela">
+          <table class="tabela-administradores">
+            <thead>
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Perfil</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="nome-administrador">Gabriel T.</td>
+                <td class="email-administrador">Joana@meetuptech.example</td>
+                <td class="perfil-administrador">Fundador</td>
+                <td class="acoes-administrador">
+                  <span class="texto-conta-propria">Sua conta</span>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="nome-administrador">Mariana Costa</td>
+                <td class="email-administrador">mariana@meetuptech.example</td>
+                <td class="perfil-administrador">Administrador</td>
+                <td class="acoes-administrador">
+                  <button class="botao botao-editar" type="button">
+                    <span aria-hidden="true">♢</span> Editar
+                  </button>
+                  <button class="botao botao-excluir" type="button">
+                    <span aria-hidden="true">♧</span> Excluir
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="nome-administrador">Lucas Almeida</td>
+                <td class="email-administrador">lucas@meetuptech.example</td>
+                <td class="perfil-administrador">Administrador</td>
+                <td class="acoes-administrador">
+                  <button class="botao botao-editar" type="button">
+                    <span aria-hidden="true">♢</span> Editar
+                  </button>
+                  <button class="botao botao-excluir" type="button">
+                    <span aria-hidden="true">♧</span> Excluir
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="aviso-acesso">
+        <h2>Acesso administrativo</h2>
+        <p>
+          O cadastro de participantes continua sem conta. Esta área é exclusiva para gerenciar o
+          acesso de administradores.
+        </p>
+      </section>
+    </main>
+  </div>
+</div>

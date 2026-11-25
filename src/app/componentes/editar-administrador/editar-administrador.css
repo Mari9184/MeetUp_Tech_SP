@@ -1,0 +1,5 @@
+/* Ação principal do formulário de edição */
+.botao-salvar {
+  background: var(--cor-destaque);
+  color: #101510;
+}

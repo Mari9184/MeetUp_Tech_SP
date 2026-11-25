@@ -1,0 +1,5 @@
+/* Ação principal do formulário de novo administrador */
+.botao-cadastrar {
+  background: var(--cor-destaque);
+  color: #101510;
+}

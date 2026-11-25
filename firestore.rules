@@ -1,0 +1,44 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdministrator() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/administradores/$(request.auth.uid));
+    }
+
+    match /administradores/{uid} {
+      allow read: if isAdministrator();
+      allow write: if false;
+    }
+
+    match /usuarios/{uid} {
+      allow read: if signedIn() && (request.auth.uid == uid || isAdministrator());
+      allow create, update: if signedIn() && request.auth.uid == uid;
+      allow delete: if signedIn() && (request.auth.uid == uid || isAdministrator());
+    }
+
+    match /eventos/{eventId} {
+      allow read: if true;
+      allow create: if isAdministrator()
+        && request.resource.data.id_evento is number
+        && request.resource.data.vagas is number
+        && request.resource.data.id_administrador == request.auth.uid
+        && request.resource.data.tags is list
+        && request.resource.data.publico_alvo is list
+        && request.resource.data.participantes_grupo is list;
+      allow update: if isAdministrator()
+        && request.resource.data.id_evento is number
+        && request.resource.data.vagas is number
+        && request.resource.data.id_administrador == resource.data.id_administrador
+        && request.resource.data.tags is list
+        && request.resource.data.publico_alvo is list
+        && request.resource.data.participantes_grupo is list;
+      allow delete: if isAdministrator();
+    }
+  }
+}

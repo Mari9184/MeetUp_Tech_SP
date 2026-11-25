@@ -1,0 +1,113 @@
+<!-- Navegação lateral do painel administrativo -->
+<aside class="menu-lateral" aria-label="Menu administrativo">
+  <!-- Marca e retorno ao site -->
+  <a class="marca" routerLink="/" aria-label="Meetup Tech SP — página inicial">
+    <img src="/Logo.png" alt="" />
+  </a>
+
+  <!-- Links entre as áreas administrativas -->
+  <nav class="navegacao">
+    <span class="rotulo-menu">MENU</span>
+
+    <a
+      class="item-menu"
+      routerLink="/eventos"
+      routerLinkActive="ativo"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect
+          x="3.5"
+          y="5"
+          width="17"
+          height="16"
+          rx="2"
+          stroke="currentColor"
+          stroke-width="1.7"
+        />
+        <path
+          d="M7.5 3v4M16.5 3v4M4 9.5h16"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+        />
+      </svg>
+      <span>Eventos</span>
+    </a>
+
+    <a class="item-menu" routerLink="/cadastrando-evento-adm" routerLinkActive="ativo">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M12 5v14M5 12h14"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      </svg>
+      <span>Cadastrar evento</span>
+    </a>
+
+    <a class="item-menu" routerLink="/ir-em-grupo-adms" routerLinkActive="ativo">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.7" />
+        <path
+          d="M3.5 20v-1.5A5.5 5.5 0 0 1 9 13h.5a5.5 5.5 0 0 1 5.5 5.5V20M16 5.3a3 3 0 0 1 0 5.8M17 13.5a5 5 0 0 1 3.5 4.8V20"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+        />
+      </svg>
+      <span>Ir em grupo</span>
+    </a>
+
+    <a class="item-menu" routerLink="/cadastro-adms" routerLinkActive="ativo">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M12 3 19 6v5c0 4.5-3 7.8-7 10-4-2.2-7-5.5-7-10V6l7-3Z"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linejoin="round"
+        />
+      </svg>
+      <span>Cadastro de ADMs</span>
+    </a>
+
+    <a
+      class="item-menu"
+      routerLink="/"
+      routerLinkActive="ativo"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linejoin="round"
+        />
+        <circle cx="12" cy="12" r="2.5" stroke="currentColor" stroke-width="1.7" />
+      </svg>
+      <span>Ver site público</span>
+    </a>
+  </nav>
+
+  <!-- Perfil fixo exibido no rodapé do menu -->
+  <footer class="perfil-usuario">
+    <span class="avatar-usuario" aria-hidden="true">GT</span>
+    <span class="dados-usuario">
+      <strong>Gabriel T.</strong>
+      <small>Fundador</small>
+    </span>
+    <button class="botao-sair" type="button" aria-label="Sair" (click)="sair()">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M14 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5M10 16l4-4-4-4M14 12H3"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+  </footer>
+</aside>

@@ -1,0 +1,208 @@
+<!-- Página pública com detalhes completos do evento -->
+<main class="detalhes-evento">
+  <!-- Cabeçalho e navegação pública -->
+  <header class="cabecalho">
+    <a class="logo-site" routerLink="/" aria-label="Meetup Tech SP - página inicial">
+      <img class="logo-imagem" src="Logo.png" alt="Logo Meetup Tech SP" />
+      <span>Meetup Tech <strong>SP</strong></span>
+    </a>
+
+    <nav class="menu-site" aria-label="Menu principal">
+      <a routerLink="/">Início</a>
+      <a href="#sobre">Sobre o evento</a>
+      <a href="#participantes">Ir em grupo</a>
+    </nav>
+  </header>
+
+  @if (carregando()) {
+    <p class="estado-pagina">Carregando detalhes do evento...</p>
+  } @else if (erro() || !evento()) {
+    <section class="estado-pagina">
+      <p>{{ erro() || 'Evento não encontrado.' }}</p>
+      <a class="link-voltar" routerLink="/">Voltar para a página inicial</a>
+    </section>
+  } @else if (evento(); as ev) {
+    <!-- Conteúdo principal do evento -->
+    <section class="conteudo-evento">
+      <!-- Destaques, título e resumo -->
+      <section class="banner-evento">
+        <div class="categorias">
+          @for (cat of ev.categorias; track cat) {
+            <span>{{ cat }}</span>
+          }
+        </div>
+
+        <h2>{{ ev.titulo }}</h2>
+
+        <div class="resumo-evento">
+          <span>{{ ev.dataExtenso }}</span>
+          <span>{{ ev.horarioResumo }}</span>
+          <span>{{ ev.cidadeResumo }}</span>
+        </div>
+      </section>
+
+      <!-- Informações, participantes e inscrição -->
+      <section class="grade-evento" aria-label="Informações, participação e inscrição">
+        <!-- Descrição, ficha e grupo de participantes -->
+        <section class="coluna-principal" aria-label="Sobre o evento e participantes">
+          <article class="informacoes-evento" id="sobre">
+            <h3>Sobre o evento</h3>
+            <p>{{ ev.descricao }}</p>
+          </article>
+
+          <section class="ficha-evento">
+            <h3>Ficha do evento</h3>
+
+            <div class="ficha-grade">
+              <div class="ficha-item">
+                <span class="ficha-icone">▦</span>
+                <div>
+                  <small>DATA E HORÁRIO</small>
+                  <p>{{ ev.fichaDataHorario }}</p>
+                </div>
+              </div>
+
+              <div class="ficha-item">
+                <span class="ficha-icone">⌖</span>
+                <div>
+                  <small>LOCAL</small>
+                  <p>{{ ev.local }}</p>
+                </div>
+              </div>
+
+              <div class="ficha-item">
+                <span class="ficha-icone">▣</span>
+                <div>
+                  <small>ESTAÇÃO POR PERTO</small>
+                  <p>{{ ev.estacao }}</p>
+                </div>
+              </div>
+
+              <div class="ficha-item">
+                <span class="ficha-icone">⌘</span>
+                <div>
+                  <small>ÁREA TECH</small>
+                  <p>{{ ev.areaTech }}</p>
+                </div>
+              </div>
+
+              <div class="ficha-item">
+                <span class="ficha-icone">▤</span>
+                <div>
+                  <small>EMPRESA ORGANIZADORA</small>
+                  <p>{{ ev.empresa }}</p>
+                </div>
+              </div>
+
+              <div class="ficha-item">
+                <span class="ficha-icone">♧</span>
+                <div>
+                  <small>FORMATO</small>
+                  <p>{{ ev.formato }}</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Participantes do evento -->
+          <section class="participacao" id="participantes">
+            <header class="participacao-cabecalho">
+              <div>
+                <h3>Ir em grupo</h3>
+                <p>Pessoas que irão ao evento</p>
+              </div>
+              <button type="button" (click)="abrirModalParticipacao()">Adicione meu nome</button>
+            </header>
+
+            @if (erroParticipacao()) {
+              <p class="lista-vazia" role="alert">{{ erroParticipacao() }}</p>
+            }
+
+            @if (ev.participantes.length === 0) {
+              <p class="lista-vazia">Nenhum participante listado.</p>
+            } @else {
+              <ul class="lista-participantes">
+                @for (pessoa of ev.participantes; track pessoa) {
+                  <li>{{ pessoa }}</li>
+                }
+              </ul>
+            }
+          </section>
+        </section>
+
+        <!-- Inscrição e localização -->
+        <aside class="coluna-lateral">
+          <section class="inscricao-evento">
+            <h3>Inscrição</h3>
+
+            <div class="inscricao-informacoes">
+              <p class="inscricao-data">{{ ev.dataExtenso }}</p>
+              <p class="inscricao-horario">{{ ev.horarioResumo }}</p>
+              <span class="inscricao-gratuita">Evento gratuito</span>
+            </div>
+
+            @if (ev.linkInscricao) {
+              <a
+                class="botao-inscricao"
+                [href]="ev.linkInscricao"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Acessar inscrição
+              </a>
+            } @else {
+              <button type="button" class="botao-inscricao" disabled>Inscrições em breve</button>
+              <p class="inscricao-aviso">As inscrições ainda não estão disponíveis.</p>
+            }
+          </section>
+
+          <section class="localizacao-evento">
+            <h3>Como chegar</h3>
+
+            <p>{{ ev.cidadeResumo }}</p>
+
+            <div class="mapa-evento">
+              <iframe
+                title="Mapa da localização do evento"
+                [src]="urlMapaEmbed()"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              >
+              </iframe>
+            </div>
+
+            <a
+              class="link-mapa"
+              [href]="urlMapaExterno()"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Abrir no Google Maps
+            </a>
+          </section>
+        </aside>
+      </section>
+
+      @if (modalAberto()) {
+        <app-adicionar-nome
+          (cancelar)="fecharModalParticipacao()"
+          (confirmar)="aoConfirmarParticipacao($event)"
+        />
+      }
+    </section>
+  }
+</main>
+
+<!-- Rodapé público -->
+<footer class="rodape-site">
+  <div class="rodape-conteudo">
+    <p class="rodape-logo">
+      <img class="logo-imagem" src="Logo.png" alt="Logo Meetup Tech SP" />
+      Meetup Tech <span>SP</span>
+    </p>
+
+    <p class="rodape-descricao">Conectando pessoas, tecnologia e eventos em São Paulo.</p>
+
+    <p class="rodape-direitos">© 2026 Meetup Tech SP. Todos os direitos reservados.</p>
+  </div>
+</footer>

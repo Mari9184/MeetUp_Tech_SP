@@ -1,0 +1,103 @@
+/* Camada de fundo e superfície do diálogo */
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: block;
+}
+
+.modal-fundo {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+/* Conteúdo e campos do formulário */
+.modal-formulario {
+  width: 100%;
+  max-width: 480px;
+  padding: 32px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 16px;
+  background: var(--cor-cartao);
+  color: var(--cor-texto);
+}
+
+.modal-formulario h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+}
+
+.modal-descricao,
+.modal-aviso {
+  color: var(--cor-texto-secundario);
+  line-height: 1.5;
+}
+
+.modal-descricao {
+  margin: 0 0 24px;
+}
+
+.modal-formulario label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.modal-formulario input {
+  width: 100%;
+  min-height: 50px;
+  padding: 0 14px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  background: var(--cor-campo);
+  color: var(--cor-texto);
+  font: inherit;
+}
+
+.modal-formulario input::placeholder {
+  color: var(--cor-texto-secundario);
+}
+
+.modal-formulario input:focus {
+  outline: 2px solid var(--cor-destaque);
+  outline-offset: 2px;
+}
+
+.modal-aviso {
+  margin: 24px 0;
+  font-size: 14px;
+}
+
+/* Ações do diálogo */
+.modal-acoes {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-acoes button {
+  flex: 1;
+  min-height: 45px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.botao-adicionar {
+  background: var(--cor-destaque);
+  color: #101510;
+}
+
+/* Ajuste de espaçamento para telas estreitas */
+@media (max-width: 480px) {
+  .modal-formulario {
+    padding: 24px;
+  }
+}
